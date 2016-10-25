@@ -881,6 +881,9 @@ function layout($layout) {
 function U($url='',$vars='',$suffix=true,$domain=false) {
     // 解析URL
     $info   =  parse_url($url);
+    if(isset($info['path'])) {
+        $smart_path = $info['path'];
+    }
     $url    =  !empty($info['path'])?$info['path']:ACTION_NAME;
     if(isset($info['fragment'])) { // 解析锚点
         $anchor =   $info['fragment'];
@@ -987,7 +990,16 @@ function U($url='',$vars='',$suffix=true,$domain=false) {
     }
 
     if(C('URL_MODEL') == 0) { // 普通模式URL转换
-        $url        =   __APP__.'?'.C('VAR_MODULE')."={$module}&".http_build_query(array_reverse($var));
+        $smart_app = __APP__;
+        if($smart_path && preg_match("/^\//", $smart_path)) {
+            $smart_app = $smart_path;
+        }
+        if($module) {
+            $url = $smart_app.'?'.C('VAR_MODULE')."={$module}&".http_build_query(array_reverse($var));
+        } else {
+            $url = $smart_app.'?'.http_build_query(array_reverse($var));
+        }
+
         if($urlCase){
             $url    =   strtolower($url);
         }        
