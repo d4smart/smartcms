@@ -1,0 +1,240 @@
+[ 2016-10-25T11:07:58+08:00 ] 127.0.0.1 /smartcms/index.php?_ijt=55d2qck7vpmrnv29j2gksc65ch
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000526s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000602s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000637s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000063s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000119s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017143s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017213s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000596s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000671s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000644s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000677s ]
+
+[ 2016-10-25T11:08:17+08:00 ] 127.0.0.1 /smartcms/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000109s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001420s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000944s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001589s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000407s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000970s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014713s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015340s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000914s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001503s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001234s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002200s ]
+
+[ 2016-10-25T11:12:28+08:00 ] 127.0.0.1 /smartcms/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000107s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001188s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002176s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003372s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000345s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001092s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018634s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019211s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000830s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001454s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001008s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001573s ]
+
+[ 2016-10-25T11:12:29+08:00 ] 127.0.0.1 /smartcms/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000105s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001353s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001007s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001631s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000309s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000947s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014179s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014801s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000907s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001440s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001332s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002315s ]
+
+[ 2016-10-25T11:12:30+08:00 ] 127.0.0.1 /smartcms/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000278s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001483s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001005s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001638s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000259s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000924s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015265s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015903s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001018s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001682s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000976s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001589s ]
+
+[ 2016-10-25T11:12:31+08:00 ] 127.0.0.1 /smartcms/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000145s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001319s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001119s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001748s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000254s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000870s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014283s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014900s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000963s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001744s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001029s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001575s ]
+
+[ 2016-10-25T11:12:32+08:00 ] 127.0.0.1 /smartcms/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000134s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001476s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001090s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001731s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000274s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000874s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015489s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016278s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000965s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001639s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001156s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002003s ]
+
+[ 2016-10-25T11:13:44+08:00 ] 127.0.0.1 /smartcms/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000138s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001335s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001660s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002803s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000270s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000846s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017931s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018520s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001244s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002035s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001429s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002082s ]
+
+[ 2016-10-25T11:13:45+08:00 ] 127.0.0.1 /smartcms/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000107s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001197s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001144s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002178s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000317s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000932s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014541s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015092s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000808s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001347s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000933s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001510s ]
+
+[ 2016-10-25T11:13:46+08:00 ] 127.0.0.1 /smartcms/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000115s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001291s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000964s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001547s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000266s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000877s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013144s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013725s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000882s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001428s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001135s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001800s ]
+
+[ 2016-10-25T11:14:49+08:00 ] 127.0.0.1 /smartcms/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000104s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001250s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001054s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001659s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000263s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000861s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020226s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020882s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000854s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001423s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001021s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001588s ]
+
+[ 2016-10-25T11:15:53+08:00 ] 127.0.0.1 /smartcms/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000110s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001682s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000993s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001602s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000299s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000941s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017668s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018267s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000884s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001563s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001351s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002344s ]
+
