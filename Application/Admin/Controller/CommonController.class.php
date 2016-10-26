@@ -20,6 +20,7 @@ class CommonController extends Controller {
 		// 如果已经登录
 		$isLogin = $this->isLogin();
 		if(!$isLogin) {
+		    // echo "<script src=\"/Public/js/dialog.js\"></script> <script>dialog.error('请先登录！');</script>";
 			// 跳转到登录页面
 			$this->redirect('/admin.php?c=login');
 		}
@@ -39,10 +40,10 @@ class CommonController extends Controller {
 	 */
 	public function isLogin() {
 		$user = $this->getLoginUser();
+
 		if($user && is_array($user)) {
 			return true;
 		}
-
 		return false;
 	}
 
