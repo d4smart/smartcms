@@ -10,10 +10,33 @@
 
 namespace Admin\Controller;
 use Think\Controller;
+use Think\Exception;
 
 class MenuController extends CommonController
 {
     public function index() {
+        $data = array();
+
+        if (isset($_REQUEST['type']) && in_array($_REQUEST['type'], array(0, 1))) {
+            $data['type'] = intval($_REQUEST['type']);
+            $this->assign('type', $data['type']);
+        } else {
+            $this->assign('type', -1);
+        }
+
+        /**
+         * 分页操作逻辑
+         */
+        $page = $_REQUEST['p']?$_REQUEST['p']:1;
+        $pageSize = $_REQUEST['pageSize']?$_REQUEST['pageSize']:10;
+        $menus = D('Menu')->getMenus($data, $page, $pageSize);
+        $menusCount = D('Menu')->getMenusCount($data);
+
+        $res = new \Think\Page($menusCount, $pageSize);
+        $pageRes = $res->show();
+
+        $this->assign('pageRes', $pageRes);
+        $this->assign('menus', $menus);
         $this->display();
     }
 
@@ -32,6 +55,10 @@ class MenuController extends CommonController
                 return show(0, "方法名不能为空！");
             }
 
+            if (I('menu_id')) {
+                return $this->save($_POST);
+            }
+
             $menuId = D("Menu")->insert($_POST);
             if ($menuId) {
                 return show(1, "新增成功！", $menuId);
@@ -41,5 +68,29 @@ class MenuController extends CommonController
         } else {
             $this->display();
         }
+    }
+
+    public function edit() {
+        $menuId = I('id');
+        $menu = D("Menu")->find($menuId);
+        $this->assign("menu", $menu);
+
+        $this->display();
+    }
+
+    public function save($data) {
+        $menuId = $data['menu_id'];
+        unset($data['menu_id']);
+
+        try {
+            $id = D("Menu")->updateMenuById($menuId, $data);
+            if ($id === false) {
+                return show(0, "更新失败！");
+            }
+            return show(1, "更新成功！");
+        } catch (Exception $e) {
+            return show(0, $e->getMessage());
+        }
+
     }
 }
