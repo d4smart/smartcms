@@ -36,3 +36,19 @@ function status($status) {
     }
     return $str;
 }
+
+function getAdminMenuUrl($nav) {
+    $url = '/admin.php?c='.$nav['c'].'&a='.$nav['f'];
+    if ($nav['f'] == 'index') {
+        $url = '/admin.php?c='.$nav['c'];
+    }
+    return $url;
+}
+
+function getActive($nav) {
+    $c = strtolower(CONTROLLER_NAME);
+    if (strtolower($nav == $c)) {
+        return 'class="active"';
+    }
+    return '';
+}
