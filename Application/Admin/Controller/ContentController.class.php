@@ -133,4 +133,50 @@ class ContentController extends CommonController
         }
 
     }
+
+    public function setStatus() {
+        try {
+            if ($_POST) {
+                $id = $_POST['id'];
+                $status = $_POST['status'];
+                if (!$id) {
+                    return show(0, "ID不存在！");
+                }
+
+                $res = D("News")->updateStatusById($id, $status);
+                if ($res) {
+                    return show(1, "操作成功！");
+                } else {
+                    return show(0, "操作失败！");
+                }
+            }
+            return show(0, "没有提交内容！");
+        } catch (Exception $e) {
+            return show(0, $e->getMessage());
+        }
+    }
+
+    public function listorder() {
+        $listorder = $_POST['listorder'];
+        $jumpUrl = $_SERVER['HTTP_REFERER'];
+        $errors = array();
+
+        try {
+            if ($listorder) {
+                foreach ($listorder as $newsId => $v) {
+                    // 执行更新操作
+                    $id = D("News")->updateNewsListOrderById($newsId, $v);
+                    if ($id === false) {
+                        $errors[] = $newsId;
+                    }
+                }
+                if ($errors) {
+                    return show(0, "排序失败 - ".implode(',', $errors), array('jump_url'=>$jumpUrl));
+                }
+                return show(1, "排序成功！", array('jump_url'=>$jumpUrl));
+            }
+        } catch (Exception $e) {
+            return show(0, $e->getMessage());
+        }
+    }
 }
