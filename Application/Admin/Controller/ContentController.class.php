@@ -10,6 +10,7 @@
 
 namespace Admin\Controller;
 use Think\Controller;
+use Think\Exception;
 
 class ContentController extends CommonController
 {
@@ -59,6 +60,10 @@ class ContentController extends CommonController
                 return show(0, "content不存在！");
             }
 
+            if (I('news_id')) {
+                return $this->save($_POST);
+            }
+
             $newsId = D("News")->insert($_POST);
             if ($newsId) {
                 $newsContent['content'] = $_POST['content'];
@@ -84,6 +89,47 @@ class ContentController extends CommonController
             $this->assign('copyFrom', $copyFrom);
 
             $this->display();
+        }
+
+    }
+
+    public function edit() {
+        $newsId = intval(I('id'));
+        if (!$newsId) {
+            $this->redirect('/admin.php?c=content');
+        }
+        $news = D("News")->find($newsId);
+        if (!$news) {
+            $this->redirect('/admin.php?c=cont');
+        }
+        $newsContent = D("NewsContent")->find($newsId);
+        if ($newsContent) {
+            $news['content'] = $newsContent['content'];
+        }
+
+        $websiteMenu = D("Menu")->getBarMenus();
+        $this->assign('websiteMenu', $websiteMenu);
+        $this->assign('titleFontColor', C("TITLE_FONT_COLOR"));
+        $this->assign('copyfrom', C("COPY_FROM"));
+        $this->assign('news', $news);
+        $this->display();
+    }
+
+    public function save($data) {
+        $newsId = $data['news_id'];
+        unset($data['news_id']);
+
+        try {
+            $id = D("News")->updateById($newsId, $data);
+            $newsContentData['content'] = $data['content'];
+            $conId = D("NewsContent")->updateNewsById($newsId, $newsContentData);
+
+            if ($id === false || $conId === false) {
+                return show(0, "更新失败！");
+            }
+            return show(1, "更新成功！");
+        } catch (Exception $e) {
+            return show(0, $e->getMessage());
         }
 
     }

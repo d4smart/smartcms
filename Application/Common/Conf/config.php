@@ -7,4 +7,7 @@ return array(
     'URL_MODEL' => 0,
     'LOAD_EXT_CONFIG' => 'db',
     'MD5_SUF' => '小舟从此逝，江海寄余生',
+
+    // 显示页面Trace信息
+    'SHOW_PAGE_TRACE' =>true,
 );
