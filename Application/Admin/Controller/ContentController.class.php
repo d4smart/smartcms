@@ -14,6 +14,30 @@ use Think\Controller;
 class ContentController extends CommonController
 {
     public function index() {
+        $conds = array();
+
+        $title = I('title');
+        $catid = I('catid');
+        if ($title) {
+            $conds['title'] = $title;
+            $this->assign('title', $title);
+        }
+        if ($catid) {
+            $conds['catid'] = intval($catid);
+            $this->assign('cateid', $conds['catid']);
+        }
+
+        $page = $_REQUEST['p'] ? $_REQUEST['p'] : 1;
+        $pageSize = 10;
+        $news = D("News")->getNews($conds, $page, $pageSize);
+        $count = D("News")->getNewsCount($conds);
+
+        $res = new \Think\Page($count, $pageSize);
+        $pageres = $res->show();
+
+        $this->assign('pageres', $pageres);
+        $this->assign('news', $news);
+        $this->assign('websiteMenu', D("Menu")->getBarMenus());
         $this->display();
     }
 

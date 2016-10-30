@@ -9,7 +9,6 @@
  */
 
 namespace Admin\Controller;
-use Think\Controller;
 use Think\Exception;
 
 class MenuController extends CommonController
