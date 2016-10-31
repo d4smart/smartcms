@@ -54,4 +54,5 @@ class NewsContentModel extends Model
 
         return $this->_db->where('news_id='.$id)->save($data);
     }
+
 }
