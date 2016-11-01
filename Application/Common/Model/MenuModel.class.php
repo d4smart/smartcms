@@ -60,7 +60,7 @@ class MenuModel extends Model
         if (!is_numeric($id) || !$id) {
             throw_exception("ID不合法！");
         }
-        if (!is_numeric($status) || !$status) {
+        if (!is_numeric($status)) {
             throw_exception("状态不合法！");
         }
 
@@ -68,7 +68,7 @@ class MenuModel extends Model
         return $this->_db->where('menu_id='.$id)->save($data);
     }
 
-    public function updateMenuListorderById($id, $listorder) {
+    public function updateListorderById($id, $listorder) {
         if (!$id || !is_numeric($id)) {
             throw_exception("ID不合法！");
         }
