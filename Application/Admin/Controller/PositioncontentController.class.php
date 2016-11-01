@@ -10,6 +10,7 @@
 
 namespace Admin\Controller;
 use Think\Controller;
+use Think\Exception;
 
 class PositioncontentController extends CommonController
 {
@@ -31,6 +32,69 @@ class PositioncontentController extends CommonController
     }
 
     public function add() {
+        if ($_POST) {
+            if (!isset($_POST['position_id']) || !$_POST['position_id']) {
+                return show(0, "推荐位ID不能为空！");
+            }
+            if (!isset($_POST['title']) || !$_POST['title']) {
+                return show(0, "推荐位标题不能为空！");
+            }
+            if (!I('url') && !I('news_id')) {
+                return show(0, "url和news_id不能同时为空！");
+            }
+            if (!isset($_POST['thumb']) || !I('thumb')) {
+                if (I('news_id')) {
+                    $res = D('News')->find(intval(I('news_id')));
+                    if ($res && is_array($res)) {
+                        $_POST['thumb'] = $res['thumb'];
+                    }
+                } else {
+                    return show(0, "图片不能为空！");
+                }
+            }
+            if (I('id')) {
+                return $this->save($_POST);
+            }
+            try {
+                $_POST['create_time'] = time();
+                $id = D("PositionContent")->insert($_POST);
+                if ($id) {
+                    return show(1, "新增成功！");
+                } else {
+                    return show(0, "新增失败！");
+                }
+            } catch (Exception $e) {
+                return show(0, $e->getMessage());
+            }
+        } else {
+            $positions = D("Position")->getNormalPositions();
+            $this->assign('positions', $positions);
+            $this->display();
+        }
+    }
+
+    public function edit() {
+        $id = I('id');
+        $position = D("PositionContent")->find(intval($id));
+        $positions = D("Position")->getNormalPositions();
+
+        $this->assign('vo', $position);
+        $this->assign('positions', $positions);
         $this->display();
+    }
+
+    public function save($data) {
+        $id = $data['id'];
+        unset($data['id']);
+
+        try {
+            $resId = D("PositionContent")->updateById($id, $data);
+            if ($resId === false) {
+                return show(0, "更新失败！");
+            }
+            return show(1, "更新成功！");
+        } catch (Exception $e) {
+            return show(0, $e->getMessage());
+        }
     }
 }

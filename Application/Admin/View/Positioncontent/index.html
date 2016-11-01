@@ -72,13 +72,13 @@
                                     <td><input size=4 type='text' name='listorder[$content.id]' value="{$content.listorder}"/></td>
                                     <td>{$content.id}</td>
                                     <td>{$content.title}</td>
-                                    <td>{$content.create_time|date="y-m-d H:i",###}</td>
+                                    <td>{$content.create_time|date="Y-m-d H:i",###}</td>
                                     <td>{$content.thumb|hasthumb}</td>
                                     <td>
                                         <span  attr-status="<if condition="$content['status'] eq 1">0<else/>1</if>"  attr-id="{$content.id}" class="sing_cursor singcms-on-off" id="singcms-on-off" >{$content.status|status}</span>
                                     </td>
                                     <td>
-                                        <span class="sing_cursor glyphicon glyphicon-edit" aria-hidden="true" id="singcms-edit" attr-id="" ></span>
+                                        <span class="sing_cursor glyphicon glyphicon-edit" aria-hidden="true" id="singcms-edit" attr-id="{$content.id}" ></span>
                                         <a href="javascript:void(0)" id="singcms-delete"  attr-id=""  attr-message="删除">
                                             <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
                                         </a>
