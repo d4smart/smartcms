@@ -69,4 +69,28 @@ class CommonController extends Controller {
         }
     }
 
+    public function listorder($model='') {
+        $listorder = $_POST['listorder'];
+        $jumpUrl = $_SERVER['HTTP_REFERER'];
+        $errors = array();
+
+        try {
+            if ($listorder) {
+                foreach ($listorder as $id => $v) {
+                    // 执行更新操作
+                    $rid = D($model)->updateListOrderById(intval($id), $v);
+                    if ($rid === false) {
+                        $errors[] = $rid;
+                    }
+                }
+                if ($errors) {
+                    return show(0, "排序失败 - ".implode(',', $errors), array('jump_url'=>$jumpUrl));
+                }
+                return show(1, "排序成功！", array('jump_url'=>$jumpUrl));
+            }
+        } catch (Exception $e) {
+            return show(0, $e->getMessage());
+        }
+    }
+
 }

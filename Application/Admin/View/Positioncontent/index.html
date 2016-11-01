@@ -69,7 +69,7 @@
                         <tbody>
                             <foreach name="contents" item="content">
                                 <tr>
-                                    <td><input size=4 type='text' name='listorder[$content.id]' value="{$content.listorder}"/></td>
+                                    <td><input size=4 type='text' name='listorder[{$content.id}]' value="{$content.listorder}"/></td>
                                     <td>{$content.id}</td>
                                     <td>{$content.title}</td>
                                     <td>{$content.create_time|date="Y-m-d H:i",###}</td>

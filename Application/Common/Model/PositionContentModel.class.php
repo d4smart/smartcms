@@ -62,4 +62,13 @@ class PositionContentModel extends Model
         $data['status'] = $status;
         return $this->_db->where('id='.$id)->save($data);
     }
+
+    public function updateListorderById($id, $listorder) {
+        if (!$id || !is_numeric($id)) {
+            throw_exception("ID不合法！");
+        }
+
+        $data = array('listorder'=>intval($listorder));
+        return $this->_db->where('id='.$id)->save($data);
+    }
 }
