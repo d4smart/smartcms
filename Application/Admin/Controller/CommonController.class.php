@@ -47,6 +47,26 @@ class CommonController extends Controller {
 		return false;
 	}
 
-	
+    public function setStatus($data, $models) {
+        try {
+            if ($_POST) {
+                $id = $data['id'];
+                $status = $data['status'];
+                if (!$id) {
+                    return show(0, "ID不存在！");
+                }
+
+                $res = D($models)->updateStatusById($id, $status);
+                if ($res) {
+                    return show(1, "操作成功！");
+                } else {
+                    return show(0, "操作失败！");
+                }
+            }
+            return show(0, "没有提交内容！");
+        } catch (Exception $e) {
+            return show(0, $e->getMessage());
+        }
+    }
 
 }
