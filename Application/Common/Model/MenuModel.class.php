@@ -89,7 +89,7 @@ class MenuModel extends Model
     public function getBarMenus() {
         $data = array(
             'type' => 0,
-            'status' => array('neq', -1),
+            'status' => 1,
         );
 
         $res = $this->_db->where($data)
