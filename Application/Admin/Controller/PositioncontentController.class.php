@@ -42,6 +42,10 @@ class PositioncontentController extends CommonController
             if (!I('url') && !I('news_id')) {
                 return show(0, "url和news_id不能同时为空！");
             }
+            if (I('id')) {
+                return $this->save($_POST);
+            }
+
             if (!isset($_POST['thumb']) || !I('thumb')) {
                 if (I('news_id')) {
                     $res = D('News')->find(intval(I('news_id')));
@@ -52,9 +56,7 @@ class PositioncontentController extends CommonController
                     return show(0, "图片不能为空！");
                 }
             }
-            if (I('id')) {
-                return $this->save($_POST);
-            }
+
             try {
                 $_POST['create_time'] = time();
                 $id = D("PositionContent")->insert($_POST);

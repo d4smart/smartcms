@@ -24,54 +24,24 @@
           </div>
         </div>
         <div class="news-list">
-          <dl>
-            <dt>一个悲伤的故事，马云彻底被王兴抛弃了</dt>
-            <dd class="news-img">
-              <img src="/Public/images/img4.jpg" alt="">
-            </dd>
-            <dd class="news-intro">
-              手段太刚猛，吃不消，美团这块肉，马云注定无福消遣。
-            </dd>
-            <dd class="news-info">
-              秋远俊二 <span>15:22</span> 阅读(1万)
-            </dd>
-          </dl>
-          <dl>
-            <dt>一个悲伤的故事，马云彻底被王兴抛弃了</dt>
-            <dd class="news-img">
-              <img src="/Public/images/img4.jpg" alt="">
-            </dd>
-            <dd class="news-intro">
-              手段太刚猛，吃不消，美团这块肉，马云注定无福消遣。
-            </dd>
-            <dd class="news-info">
-              秋远俊二 <span>15:22</span> 阅读(1万)
-            </dd>
-          </dl>
-          <dl>
-            <dt>一个悲伤的故事，马云彻底被王兴抛弃了</dt>
-            <dd class="news-img">
-              <img src="/Public/images/img4.jpg" alt="">
-            </dd>
-            <dd class="news-intro">
-              手段太刚猛，吃不消，美团这块肉，马云注定无福消遣。
-            </dd>
-            <dd class="news-info">
-              秋远俊二 <span>15:22</span> 阅读(1万)
-            </dd>
-          </dl>
-          <dl>
-            <dt>一个悲伤的故事，马云彻底被王兴抛弃了</dt>
-            <dd class="news-img">
-              <img src="/Public/images/img4.jpg" alt="">
-            </dd>
-            <dd class="news-intro">
-              手段太刚猛，吃不消，美团这块肉，马云注定无福消遣。
-            </dd>
-            <dd class="news-info">
-              秋远俊二 <span>15:22</span> 阅读(1万)
-            </dd>
-          </dl>
+          <volist name="result['listNews']" id="vo">
+            <dl>
+              <dt>
+                <a href="/index.php?c=detail&id={$vo.news_id}" target="_blank">{$vo.title}</a>
+              </dt>
+              <dd class="news-img">
+                <a href="/index.php?c=detail&id={$vo.news_id}" target="_blank">
+                  <img src="{$vo.thumb}" width="200" height="120" alt="{$vo.title}">
+                </a>
+              </dd>
+              <dd class="news-intro">
+                {$vo.description}
+              </dd>
+              <dd class="news-info">
+                {$vo.description} <span>{$vo.create_time|date="Y-m-d H:i:s",###}</span> 阅读({$vo.count})
+              </dd>
+            </dl>
+          </volist>
         </div>
       </div>
 
