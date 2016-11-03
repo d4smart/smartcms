@@ -25,7 +25,7 @@
             <ul class="nav navbar-nav navbar-left">
                 <li><a href="/" <if condition="$result['catid'] eq 0">class="curr"</if>>首页</a></li>
                 <foreach name="navs" item="nav">
-                    <li><a href="/index.php?c=cat&id={$nav.menu_id}" <if condition="$nav['menu_id'] eq result['catid']">class="curr"</if> > {$nav.name} </a></li>
+                    <li><a href="/index.php?c=cat&id={$nav.menu_id}" <if condition="$nav['menu_id'] eq $result['catid']">class="curr"</if> > {$nav.name} </a></li>
                 </foreach>
             </ul>
         </div>
