@@ -36,4 +36,15 @@ class IndexController extends CommonController
         $this->index('buildHtml');
         return show(1, "首页缓存成功！");
     }
+
+    public function crontab_build_html() {
+        if (APP_CRONTAB != 1) {
+            die("The file must exec by crontab.");
+        }
+        $result = D("Basic")->select();
+        if (!$result['cacheindex']) {
+            die("系统缓存未开启");
+        }
+        $this->index('buildHtml');
+    }
 }
