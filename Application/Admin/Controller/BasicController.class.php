@@ -16,6 +16,7 @@ class BasicController extends CommonController
     public function index() {
         $result = D("Basic")->select();
         $this->assign('vo', $result);
+        $this->assign('type', 1);
         $this->display();
     }
 
@@ -36,5 +37,11 @@ class BasicController extends CommonController
         } else {
             return show(0, "没有提交的数据！");
         }
+    }
+
+    // 缓存管理
+    public function cache() {
+        $this->assign('type', 2);
+        $this->display();
     }
 }

@@ -4,7 +4,7 @@ use Think\Controller;
 
 class IndexController extends CommonController
 {
-    public function index() {
+    public function index($type='') {
         // 获取首页大图数据
         $topPicNews = D("PositionContent")->select(array('status'=>1, 'position_id'=>1), 1);
         // 首页3张小图推荐
@@ -24,6 +24,16 @@ class IndexController extends CommonController
             'rankNews' => $rankNews,
             'catid' => 0,
         ));
-        $this->display();
+        // 生成页面静态化
+        if ($type == 'buildHtml') {
+            $this->buildHtml('index', HTML_PATH, 'Index/index');
+        } else {
+            $this->display();
+        }
+    }
+
+    public function build_html() {
+        $this->index('buildHtml');
+        return show(1, "首页缓存成功！");
     }
 }
