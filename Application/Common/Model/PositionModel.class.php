@@ -49,4 +49,11 @@ class PositionModel extends Model
         $list = $this->_db->where($conditions)->order('id')->select();
         return $list;
     }
+
+    public function getCount($data=array()) {
+        $conditions = $data;
+        $list = $this->_db->where($conditions)->count();
+
+        return $list;
+    }
 }
