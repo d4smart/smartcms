@@ -6,6 +6,10 @@
       <div class="col-sm-9 col-md-9">
         <div class="banner">
           <div class="banner-left">
+            <div class="banner-info">
+              <span>阅读数</span>
+              <i class="news_count node-{$result['topPicNews'][0]['news_id']}" news-id="{$result['topPicNews'][0]['news_id']}" id="node-{$result['topPicNews'][0]['news_id']}"></i>
+            </div>
             <a href="/index.php?c=detail&id={$result['topPicNews'][0]['news_id']}" target="_blank">
               <img width="670" height="360" src="{$result['topPicNews'][0]['thumb']}" alt="">
             </a>
@@ -38,7 +42,7 @@
                 {$vo.description}
               </dd>
               <dd class="news-info">
-                {$vo.description} <span>{$vo.create_time|date="Y-m-d H:i:s",###}</span> 阅读({$vo.count})
+                {$vo.keywords} <span>{$vo.create_time|date="Y-m-d H:i:s",###}</span> 阅读(<i news-id="{$vo.news_id}" class="news_count node-{$vo.news_id}">{$vo.count}</i>)
               </dd>
             </dl>
           </volist>
@@ -51,4 +55,6 @@
   </div>
 </section>
 </body>
+<script src="/Public/js/jquery.js"></script>
+<script src="/Public/js/count.js"></script>
 </html>
