@@ -3,7 +3,10 @@ body{
 	font-size: 14px;
 }
 .navbar-inverse{
-	background: #262626;
+	background: #0099cb;
+}
+.navbar-inverse .navbar-header{
+	padding: 8px;
 }
 .navbar-inverse .navbar-nav{
 	padding-left: 45px;
@@ -12,12 +15,12 @@ body{
 	font-size: 16px;
 	color:#fff;
 	line-height: 36px;
+	padding-top: 5px;
+	padding-bottom: 7px;
 }
 .navbar-inverse .navbar-nav>li>a.curr{
-	border-bottom:2px solid #e54e47;
-	padding-bottom: 13px;
-	background: -moz-linear-gradient(top, #262626, #111c18,50%); 
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #262626), color-stop(1, #111c18));
+	background: -moz-linear-gradient(top, #262626, #111c18);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #eea236));
 }
 .banner{
 	padding-top: 20px;
@@ -42,11 +45,9 @@ body{
 }
 .pre{
 	left: 10px;
-	background: url(../../images/left.png)
 }
 .next{
 	right: 10px;
-	background: url(../../images/right.png)
 }
 .banner-dot{
 	position: absolute;
@@ -59,11 +60,10 @@ body{
 	margin-right: 5px;
 	width: 8px;
 	height: 8px;
-	background: url(../../images/white.png);
 	cursor: pointer;
 }
 .banner-dot li.curr{
-	background: url(../../images/red.png);
+
 }
 .banner-info{
 	position: absolute;
@@ -268,4 +268,11 @@ body{
 .news-detail{
 	width:858px;
 	overflow:hidden
+}
+.footer{
+	text-align: center;
+	padding: 15px;
+	font-size: 15px;
+	color: #337ab7;
+	background-color: #2E2D3C;
 }

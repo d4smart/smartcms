@@ -1,23 +1,52 @@
+<!DOCTYPE html>
+<?php
+    $config = D("Basic")->select();
+	$navs = D("Menu")->getBarMenus();
+	$vo = $result['news'];
+?>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$config.title}</title>
+	<meta name="keywords" content="{$config.keywords}"/>
+	<meta name="description" content="{$config.description}"/>
+	<link rel="stylesheet" href="/Public/css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="/Public/css/home/main.css" type="text/css" />
+	<link rel="shortcut icon" href="http://www.d4smarter.com/favicon.ico" />
+</head>
+
+<body>
 <include file="Index/header" />
-<?php $vo = $result['news'];?>
-	<section>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-9 col-md-9">
 
-					<div class="news-detail">
-						<h1>{$vo.title}</h1>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-9 col-md-9">
 
-						{$vo.content}
-					</div>
-					
+			<div class="news-detail">
+				<div class="news-header">
+					<h1>{$vo.title}</h1>
+					<p>发表于：<a href="/index.php?c=cat&id={$vo.catid}">{$vo.menu}</a>&nbsp;&nbsp;&nbsp;
+						发表日期：{$vo.create_time|date="Y-m-d H:i",###}</p>
 				</div>
 
-				<include file="Index/right" />
-				<!-- end right-->
+				<div  class="news-content">
+					{$vo.content}
+				</div>
+
+				<div class="news-intro">
+					文章关键词：{$vo.keywords}
+				</div>
 			</div>
+
 		</div>
-	</section>
+
+		<include file="Index/right" />
+		<!-- end right-->
+	</div>
+</div>
+
+<include file="Index/footer" />
+
 </body>
 <script src="/Public/js/jquery.js"></script>
 <script>

@@ -1,59 +1,76 @@
+<!DOCTYPE html>
+<?php
+    $config = D("Basic")->select();
+    $navs = D("Menu")->getBarMenus();
+?>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{$config.title}</title>
+  <meta name="keywords" content="{$config.keywords}"/>
+  <meta name="description" content="{$config.description}"/>
+  <link rel="stylesheet" href="/Public/css/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="/Public/css/home/main.css" type="text/css" />
+  <link rel="shortcut icon" href="http://www.d4smarter.com/favicon.ico" />
+</head>
+
+<body>
 <include file="Index/header" />
 
-<section>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-9 col-md-9">
-        <div class="banner">
-          <div class="banner-left">
-            <div class="banner-info">
-              <span>阅读数</span>
-              <i class="news_count node-{$result['topPicNews'][0]['news_id']}" news-id="{$result['topPicNews'][0]['news_id']}" id="node-{$result['topPicNews'][0]['news_id']}"></i>
-            </div>
-            <a href="/index.php?c=detail&id={$result['topPicNews'][0]['news_id']}" target="_blank">
-              <img width="670" height="360" src="{$result['topPicNews'][0]['thumb']}" alt="">
-            </a>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-9">
+      <div class="banner">
+        <div class="banner-left">
+          <div class="banner-info">
+            <span>阅读数</span>
+            <i class="news_count node-{$result['topPicNews'][0]['news_id']}" news-id="{$result['topPicNews'][0]['news_id']}" id="node-{$result['topPicNews'][0]['news_id']}"></i>
           </div>
-          <div class="banner-right">
-            <ul>
-
-              <volist name="result['topSmallNews']" id="vo">
-                <li>
-                  <a href="/index.php?c=detail&id={$vo.news_id}" target="_blank">
-                    <img src="{$vo.thumb}" width="150" height="113" alt="{$vo.title}">
-                  </a>
-                </li>
-              </volist>
-            </ul>
-          </div>
+          <a href="/index.php?c=detail&id={$result['topPicNews'][0]['news_id']}" target="_blank">
+            <img width="670" height="360" src="{$result['topPicNews'][0]['thumb']}" alt="">
+          </a>
         </div>
-        <div class="news-list">
-          <volist name="result['listNews']" id="vo">
-            <dl>
-              <dt>
-                <a href="/index.php?c=detail&id={$vo.news_id}" target="_blank">{$vo.title}</a>
-              </dt>
-              <dd class="news-img">
+        <div class="banner-right">
+          <ul>
+
+            <volist name="result['topSmallNews']" id="vo">
+              <li>
                 <a href="/index.php?c=detail&id={$vo.news_id}" target="_blank">
-                  <img src="{$vo.thumb}" width="200" height="120" alt="{$vo.title}">
+                  <img src="{$vo.thumb}" width="150" height="113" alt="{$vo.title}">
                 </a>
-              </dd>
-              <dd class="news-intro">
-                {$vo.description}
-              </dd>
-              <dd class="news-info">
-                {$vo.keywords} <span>{$vo.create_time|date="Y-m-d H:i:s",###}</span> 阅读(<i news-id="{$vo.news_id}" class="news_count node-{$vo.news_id}">{$vo.count}</i>)
-              </dd>
-            </dl>
-          </volist>
+              </li>
+            </volist>
+          </ul>
         </div>
       </div>
-
-      <!-- 网站右侧信息 -->
-      <include file="Index/right" />
+      <div class="news-list">
+        <volist name="result['listNews']" id="vo">
+          <dl>
+            <dt>
+              <a href="/index.php?c=detail&id={$vo.news_id}" target="_blank">{$vo.title}</a>
+            </dt>
+            <dd class="news-img">
+              <a href="/index.php?c=detail&id={$vo.news_id}" target="_blank">
+                <img src="{$vo.thumb}" width="200" height="120" alt="{$vo.title}">
+              </a>
+            </dd>
+            <dd class="news-intro">
+              {$vo.description}
+            </dd>
+            <dd class="news-info">
+              {$vo.keywords} <span>{$vo.create_time|date="Y-m-d H:i:s",###}</span> 阅读(<i news-id="{$vo.news_id}" class="news_count node-{$vo.news_id}">{$vo.count}</i>)
+            </dd>
+          </dl>
+        </volist>
+      </div>
     </div>
+
+    <!-- 网站右侧信息 -->
+    <include file="Index/right" />
   </div>
-</section>
+</div>
+
+<include file="Index/footer" />
 </body>
 <script src="/Public/js/jquery.js"></script>
 <script src="/Public/js/count.js"></script>

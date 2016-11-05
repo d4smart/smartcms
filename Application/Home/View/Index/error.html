@@ -1,12 +1,30 @@
-<include file="Index/header" />
+<!DOCTYPE html>
+<?php
+    $config = D("Basic")->select();
+    $navs = D("Menu")->getBarMenus();
+?>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{$config.title}</title>
+    <meta name="keywords" content="{$config.keywords}"/>
+    <meta name="description" content="{$config.description}"/>
+    <link rel="stylesheet" href="/Public/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="/Public/css/home/main.css" type="text/css" />
+    <link rel="shortcut icon" href="http://www.d4smarter.com/favicon.ico" />
+</head>
+
 <body>
-    <section>
-        <div class="container" style="text-align: center">
-            <h1 style="color:red">{$message}</h1>
-            <h3 id="location">系统将在<span style="color:red">3</span>秒后自动跳转...</h3>
-        </div>
-    </section>
+<include file="Index/header" />
+
+<div class="content">
+    <div class="container" style="text-align: center">
+        <h1 style="color:red">{$message}</h1>
+        <h3 id="location">系统将在<span style="color:red">3</span>秒后自动跳转...</h3>
+    </div>
+</div>
 </body>
+
 <script src="/Public/js/jquery.js"></script>
 <script>
     var url = "/";

@@ -1,6 +1,6 @@
 <?php
 /**
- * Desp:
+ * Desp: 文章控制器
  * User: d4smart
  * Date: 2016/11/3
  * Time: 10:50
@@ -30,6 +30,8 @@ class DetailController extends CommonController
 
         $content = D("NewsContent")->find($id);
         $news['content'] = htmlspecialchars_decode($content['content']);
+        $menu = D("Menu")->find($news['catid']);
+        $news['menu'] = $menu['name'];
 
         // 获取文章排行
         $rankNews = $this->getRank();
