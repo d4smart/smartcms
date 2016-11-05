@@ -1,0 +1,22 @@
+body {
+    background-image: url("/Public/images/bg1.jpg");
+}
+.admin_login_wrap {
+    margin: 140px auto 0;
+    width: 480px;
+}
+.admin_login_border {
+    box-shadow: 1px 2px 3px #ccc;
+    border: 1px solid #eee;
+    background: #fff;
+    padding: 0 5px 30px;
+    overflow: hidden;
+    margin-bottom: 32px;
+}
+.admin_input {
+    margin: 20px auto 0;
+    width: 280px;
+}
+.form-signin input,button{
+    margin: 10px;
+}

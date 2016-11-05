@@ -269,6 +269,12 @@ body{
 	width:858px;
 	overflow:hidden
 }
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
 .footer{
 	text-align: center;
 	padding: 15px;

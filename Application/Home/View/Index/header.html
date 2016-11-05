@@ -8,16 +8,21 @@
                 </a>
             </div>
             <ul class="nav navbar-nav navbar-left">
-                <li><a href="/" <if condition="$result['catid'] eq 0">class="curr"</if>>首页</a></li>
+                <li><a href="/"
+                    <if condition="$result['catid'] eq 0">class="curr"</if>
+                    >首页</a></li>
                 <foreach name="navs" item="nav">
-                    <li><a href="/index.php?c=cat&id={$nav.menu_id}" <if condition="$nav['menu_id'] eq $result['catid']">class="curr"</if> > {$nav.name} </a></li>
+                    <li><a href="/index.php?c=cat&id={$nav.menu_id}"
+                        <if condition="$nav['menu_id'] eq $result['catid']">class="curr"</if>
+                        > {$nav.name} </a></li>
                 </foreach>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="__APP__/Admin/login">用户登陆</a></li>
                 <li><a href="__APP__/Admin/register">用户注册</a></li>
-                <li><a href="" onclick="window.open('__PUBLIC__/images/weixin.png','','width=360,height=360');">关于我</a></li>
+                <li><a href="" onclick="window.open('__PUBLIC__/images/weixin.png','','width=360,height=360');">关于我</a>
+                </li>
             </ul>
         </div>
     </div>
