@@ -1,6 +1,6 @@
 <?php
 /**
- * Desp:
+ * Desp: 文章控制器
  * User: d4smart
  * Date: 2016/10/28
  * Time: 11:50
@@ -9,7 +9,6 @@
  */
 
 namespace Admin\Controller;
-use Think\Controller;
 use Think\Exception;
 
 class ContentController extends CommonController
@@ -75,7 +74,7 @@ class ContentController extends CommonController
                 if ($cid) {
                     return show(1, "新增成功！");
                 } else {
-                    return show(0, "主表插入成功，副表插入失败！");
+                    return show(0, "文章主表插入成功，副表插入失败！");
                 }
             } else {
                 return show(0, "插入失败！");
@@ -102,7 +101,7 @@ class ContentController extends CommonController
         }
         $news = D("News")->find($newsId);
         if (!$news) {
-            $this->redirect('/admin.php?c=cont');
+            $this->redirect('/admin.php?c=content');
         }
         $newsContent = D("NewsContent")->find($newsId);
         if ($newsContent) {
@@ -154,10 +153,10 @@ class ContentController extends CommonController
         $newsId = I('push');
 
         if (!$newsId || !is_array($newsId)) {
-            return show(0, "请选择推荐位的文章进行推荐");
+            return show(0, "请选择文章进行推荐");
         }
         if (!$positionId) {
-            return show(0, "没有推荐位");
+            return show(0, "没有选择推荐位");
         }
 
         try {
@@ -175,7 +174,7 @@ class ContentController extends CommonController
                     'status' => 1,
                     'create_time' => $new['create_time'],
                 );
-                $position = D("PositionContent")->insert($data);
+                D("PositionContent")->insert($data);
             }
         } catch (Exception $e) {
             return show(0, $e->getMessage());

@@ -1,26 +1,23 @@
 <?php
+/**
+ * 后台公共控制器
+ */
+
 namespace Admin\Controller;
 use Think\Controller;
-/**
- * use Common\Model 这块可以不需要使用，框架默认会加载里面的内容
- */
-class CommonController extends Controller {
+use Think\Exception;
 
-
+class CommonController extends Controller
+{
 	public function __construct() {
-		
 		parent::__construct();
 		$this->_init();
 	}
-	/**
-	 * 初始化
-	 * @return
-	 */
+
 	private function _init() {
 		// 如果已经登录
 		$isLogin = $this->isLogin();
 		if(!$isLogin) {
-		    // echo "<script src=\"/Public/js/dialog.js\"></script> <script>dialog.error('请先登录！');</script>";
 			// 跳转到登录页面
 			$this->redirect('/admin.php?c=login');
 		}
@@ -28,7 +25,7 @@ class CommonController extends Controller {
 
 	/**
 	 * 获取登录用户信息
-	 * @return array
+	 * @return array 用户登录的session信息
 	 */
 	public function getLoginUser() {
 		return session("adminUser");
@@ -36,7 +33,7 @@ class CommonController extends Controller {
 
 	/**
 	 * 判定是否登录
-	 * @return boolean 
+	 * @return boolean 是否登录
 	 */
 	public function isLogin() {
 		$user = $this->getLoginUser();
@@ -47,6 +44,12 @@ class CommonController extends Controller {
 		return false;
 	}
 
+    /**
+     * 更改记录状态的公共方法
+     * 需要对应的模型实现updateStatusById方法
+     * @param $data 传入的状态数据（id，status）
+     * @param $models 对应的模型
+     */
     public function setStatus($data, $models) {
         try {
             if ($_POST) {
@@ -69,6 +72,11 @@ class CommonController extends Controller {
         }
     }
 
+    /**
+     * 更改记录的排序的公共方法
+     * 需要对应的模型实现updateListOrderById方法
+     * @param string $model 对应的模型
+     */
     public function listorder($model='') {
         $listorder = $_POST['listorder'];
         $jumpUrl = $_SERVER['HTTP_REFERER'];

@@ -1,6 +1,6 @@
 <?php
 /**
- * Desp: 推荐为管理操作
+ * Desp: 推荐位管理操作
  * User: d4smart
  * Date: 2016/10/31
  * Time: 9:28
@@ -53,7 +53,6 @@ class PositionModel extends Model
     public function getCount($data=array()) {
         $conditions = $data;
         $list = $this->_db->where($conditions)->count();
-
         return $list;
     }
 }
