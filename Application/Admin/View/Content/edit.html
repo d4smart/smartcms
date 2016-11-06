@@ -20,7 +20,7 @@
                             <i class="fa fa-dashboard"></i> <a href="/admin.php?c=content">文章管理</a>
                         </li>
                         <li class="active">
-                            <i class="fa fa-edit"></i> 文章添加
+                            <i class="fa fa-edit"></i> 文章编辑
                         </li>
                     </ol>
                 </div>
@@ -28,25 +28,25 @@
             <!-- /.row -->
 
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
 
                     <form class="form-horizontal" id="singcms-form">
                         <div class="form-group">
-                            <label for="title" class="col-sm-2 control-label">标题:</label>
+                            <label for="title" class="col-sm-1 control-label">标题:</label>
                             <div class="col-sm-5">
                                 <input type="text" name="title" value="{$news.title}" id="title" class="form-control"
                                        placeholder="请填写标题">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="small_title" class="col-sm-2 control-label">短标题:</label>
+                            <label for="small_title" class="col-sm-1 control-label">短标题:</label>
                             <div class="col-sm-5">
                                 <input type="text" name="small_title" value="{$news.small_title}" id="small_title"
                                        class="form-control" id="inputname" placeholder="请填写短标题">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="thumb" class="col-sm-2 control-label">缩略图:</label>
+                            <label for="thumb" class="col-sm-1 control-label">缩略图:</label>
                             <div class="col-sm-5">
                                 <input id="file_upload" type="file" multiple="true">
                                 <img style="display: none" id="upload_org_code_img" src="{$news.thumb}" width="150"
@@ -56,7 +56,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="title_font_color" class="col-sm-2 control-label">标题颜色:</label>
+                            <label for="title_font_color" class="col-sm-1 control-label">标题颜色:</label>
                             <div class="col-sm-5">
                                 <select class="form-control" name="title_font_color" id="title_font_color">
                                     <option value="">==请选择颜色==</option>
@@ -67,7 +67,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="catid" class="col-sm-2 control-label">所属栏目:</label>
+                            <label for="catid" class="col-sm-1 control-label">所属栏目:</label>
                             <div class="col-sm-5">
                                 <select class="form-control" name="catid" id="catid">
                                     <foreach name="websiteMenu" item="sitenav">
@@ -78,7 +78,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="copyfrom" class="col-sm-2 control-label">来源:</label>
+                            <label for="copyfrom" class="col-sm-1 control-label">来源:</label>
                             <div class="col-sm-5">
                                 <select class="form-control" name="copyfrom" id="copyfrom">
                                     <foreach name="copyfrom" item="from">
@@ -89,20 +89,20 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="editor_singcms" class="col-sm-2 control-label">内容:</label>
+                            <label for="editor_singcms" class="col-sm-1 control-label">内容:</label>
                             <div class="col-sm-5">
-                                <textarea class="input js-editor" id="editor_singcms" name="content" rows="20">{$news.content}</textarea>
+                                <textarea class="input js-editor" id="editor_singcms" name="content" style="width: 960px;height: 540px;">{$news.content}</textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="description" class="col-sm-2 control-label">描述:</label>
+                            <label for="description" class="col-sm-1 control-label">描述:</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="description" value="{$news.description}"
                                        id="description" placeholder="描述">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="keywords" class="col-sm-2 control-label">关键字:</label>
+                            <label for="keywords" class="col-sm-1 control-label">关键字:</label>
                             <div class="col-sm-5">
                                 <input type="text" class="form-control" name="keywords" value="{$news.keywords}"
                                        id="keywords" placeholder="请填写关键词">
@@ -111,7 +111,7 @@
                         <input type="hidden" name="news_id" value="{$news.news_id}">
 
                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
+                            <div class="col-sm-offset-1 col-sm-11">
                                 <button type="button" class="btn btn-default" id="singcms-button-submit">提交</button>
                             </div>
                         </div>
@@ -148,7 +148,7 @@
             uploadJson: '/admin.php?c=image&a=kindupload',
             afterBlur: function () {
                 this.sync();
-            }, //
+            },
         });
     });
 </script>

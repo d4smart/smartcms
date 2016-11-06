@@ -1,5 +1,5 @@
 <?php
-  $navs = D("Menu")->getAdminMenus();
+    $navs = D("Menu")->getAdminMenus();
     $username = getLoginUsername();
     foreach($navs as $k=>$v) {
         if ($v['c'] == 'admin' && $username != 'd4smart') {

@@ -21,7 +21,7 @@
                             <i class="fa fa-dashboard"></i> <a href="/admin.php?c=menu">菜单管理</a>
                         </li>
                         <li class="active">
-                            <i class="fa fa-table"></i>{$nav}
+                            <i class="fa fa-table"></i>菜单列表
                         </li>
                     </ol>
                 </div>
@@ -29,7 +29,7 @@
             <!-- /.row -->
             <div class="row">
                 <form action="/admin.php" method="get">
-                    <div class="input-group">
+                    <div class="input-group col-md-6">
                         <span class="input-group-addon">类型</span>
                         <select class="form-control" name="type">
                             <option value=''>请选择类型</option>
@@ -37,9 +37,8 @@
                             <option value="0" <if condition="$type eq 0">selected="selected"</if>>前端导航</option>
                         </select>
                         <span class="input-group-btn">
-                        <button id="sub_data" type="submit" class="btn btn-primary"><i
-                                class="glyphicon glyphicon-search"></i></button>
-                    </span>
+                            <button id="sub_data" type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
+                        </span>
                     </div>
                     <input type="hidden" name="c" value="menu"/>
                     <input type="hidden" name="a" value="index"/>
@@ -53,7 +52,7 @@
                 </button>
             </div>
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-10">
                     <h3></h3>
                     <div class="table-responsive">
                         <form id="singcms-listorder">
