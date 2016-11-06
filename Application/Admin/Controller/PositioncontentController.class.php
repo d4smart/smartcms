@@ -1,6 +1,6 @@
 <?php
 /**
- * Desp:
+ * Desp: 推荐位内容控制器
  * User: d4smart
  * Date: 2016/10/31
  * Time: 12:36
@@ -9,7 +9,6 @@
  */
 
 namespace Admin\Controller;
-use Think\Controller;
 use Think\Exception;
 
 class PositioncontentController extends CommonController
@@ -88,6 +87,14 @@ class PositioncontentController extends CommonController
     public function save($data) {
         $id = $data['id'];
         unset($data['id']);
+        $data['update_time'] = time();
+        // 继续使用文章的缩略图
+        if ($data['news_id']) {
+            $res = D('News')->find(intval(I('news_id')));
+            if ($res && is_array($res)) {
+                $data['thumb'] = $res['thumb'];
+            }
+        }
 
         try {
             $resId = D("PositionContent")->updateById($id, $data);

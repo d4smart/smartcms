@@ -1,6 +1,6 @@
 <?php
 /**
- * Desp:
+ * Desp: 网站配置信息控制器
  * User: d4smart
  * Date: 2016/11/1
  * Time: 19:19
@@ -9,7 +9,6 @@
  */
 
 namespace Admin\Controller;
-use Think\Controller;
 
 class BasicController extends CommonController
 {

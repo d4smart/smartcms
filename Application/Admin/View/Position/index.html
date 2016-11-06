@@ -66,18 +66,14 @@
                             </volist>
                             </tbody>
                         </table>
-
                     </div>
                 </div>
-
             </div>
             <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
-
     </div>
     <!-- /#page-wrapper -->
-
 </div>
 <!-- /#wrapper -->
 </body>
@@ -87,7 +83,7 @@
         'edit_url': '/admin.php?c=position&a=edit',
         'set_status_url': '/admin.php?c=position&a=setStatus',
         'add_url': '/admin.php?c=position&a=add',
-    }
+    };
     $(".singcms-table #sing-add-position-content").on('click', function () {
         var id = $(this).attr('attr-id');
         window.location.href = '/admin.php?c=positioncontent&a=index&position_id=' + id;

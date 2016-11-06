@@ -29,7 +29,7 @@
             </div>
             <br>
             <div class="row">
-                <form action="/admin.php" method="get">
+                <form action="/admin.php?c=positioncontent&a=index" method="post">
                     <div class="col-md-3">
                         <div class="input-group">
                             <span class="input-group-addon">推荐位</span>
@@ -40,8 +40,6 @@
                             </select>
                         </div>
                     </div>
-                    <input type="hidden" name="c" value="positioncontent"/>
-                    <input type="hidden" name="a" value="index"/>
                     <div class="col-md-3">
                         <div class="input-group">
                             <input class="form-control" name="title" type="text" value="{$title}" placeholder="文章标题"/>
@@ -64,7 +62,7 @@
                                     <th width="14">排序</th><!--7-->
                                     <th>id</th>
                                     <th>标题</th>
-                                    <th>时间</th>
+                                    <th>创建时间</th>
                                     <th>封面图</th>
                                     <th>状态</th>
                                     <th>操作</th>
@@ -122,8 +120,7 @@
         'set_status_url': '/admin.php?c=positioncontent&a=setStatus',
         'add_url': '/admin.php?c=positioncontent&a=add',
         'listorder_url': '/admin.php?c=positioncontent&a=listorder',
-    }
-
+    };
 </script>
 <include file="Index/footer"/>
 </html>

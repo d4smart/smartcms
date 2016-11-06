@@ -1,6 +1,6 @@
 <?php
 /**
- * Desp:
+ * Desp: 菜单控制器
  * User: d4smart
  * Date: 2016/10/26
  * Time: 10:29
@@ -30,7 +30,6 @@ class MenuController extends CommonController
         $pageSize = $_REQUEST['pageSize']?$_REQUEST['pageSize']:10;
         $menus = D('Menu')->getMenus($data, $page, $pageSize);
         $menusCount = D('Menu')->getMenusCount($data);
-
         $res = new \Think\Page($menusCount, $pageSize);
         $pageRes = $res->show();
 

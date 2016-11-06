@@ -1,6 +1,6 @@
 <?php
 /**
- * Desp:
+ * Desp: 推荐位控制器
  * User: d4smart
  * Date: 2016/10/31
  * Time: 9:58
@@ -9,7 +9,6 @@
  */
 
 namespace Admin\Controller;
-use Think\Controller;
 
 class PositionController extends CommonController
 {

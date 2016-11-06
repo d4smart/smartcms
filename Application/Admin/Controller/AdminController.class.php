@@ -1,14 +1,13 @@
 <?php
 /**
- * 用户管理
+ * 用户管理控制器
  */
+
 namespace Admin\Controller;
-use Think\Controller;
 use Think\Exception;
 
-class AdminController extends CommonController {
-
-
+class AdminController extends CommonController
+{
     public function index() {
         $admins = D('Admin')->getAdmins();
         $this->assign('admins', $admins);
@@ -16,10 +15,8 @@ class AdminController extends CommonController {
     }
 
     public function add() {
-
         // 保存数据
         if(IS_POST) {
-
             if(!isset($_POST['username']) || !$_POST['username']) {
                 return show(0, '用户名不能为空');
             }
@@ -29,7 +26,7 @@ class AdminController extends CommonController {
             $_POST['password'] = getMd5Password($_POST['password']);
             // 判定用户名是否存在
             $admin = D("Admin")->getAdminByUsername($_POST['username']);
-            if($admin && $admin['status']!=-1) {
+            if($admin) {
                 return show(0,'该用户存在');
             }
 
@@ -45,10 +42,10 @@ class AdminController extends CommonController {
 
     public function setStatus() {
         $data = array(
-            'admin_id'=>intval($_POST['id']),
+            'id'=>intval($_POST['id']),
             'status' => intval($_POST['status']),
         );
-        return parent::setStatus($_POST,'Admin');
+        return parent::setStatus($data, 'Admin');
     }
 
     public function personal() {
