@@ -1,6 +1,6 @@
 <?php
 /**
- * Desp:
+ * Desp: 前台模块公共控制器，拥有一些公共方法
  * User: d4smart
  * Date: 2016/11/2
  * Time: 12:46

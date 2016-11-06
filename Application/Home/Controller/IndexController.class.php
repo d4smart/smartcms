@@ -1,6 +1,9 @@
 <?php
+/**
+ * 首页控制器
+ */
+
 namespace Home\Controller;
-use Think\Controller;
 use Think\Exception;
 
 class IndexController extends CommonController
@@ -25,7 +28,8 @@ class IndexController extends CommonController
             'rankNews' => $rankNews,
             'catid' => 0,
         ));
-        // 生成页面静态化
+
+        // 根据传入参数生成页面静态化文件或渲染首页模板
         if ($type == 'buildHtml') {
             $this->buildHtml('index', HTML_PATH, 'Index/index');
         } else {
@@ -39,19 +43,26 @@ class IndexController extends CommonController
     }
 
     public function crontab_build_html() {
+        // 判断是否通过cron.php入口执行（不能通过网页访问执行）
         if (APP_CRONTAB != 1) {
-            die("The file must exec by crontab.");
+            die("The file must exec by CronTab.");
         }
+
+        // 判断缓存是否开启
         $result = D("Basic")->select();
         if (!$result['cacheindex']) {
             die("系统缓存未开启");
         }
+
         $this->index('buildHtml');
     }
 
+    /**
+     * 获取文章的阅读数
+     */
     public function getCount() {
         if (!$_POST) {
-            return show(0, "没有任何内容！");
+            return show(0, "没有提交任何内容！");
         }
 
         $newsIds = array_unique($_POST);
@@ -63,7 +74,7 @@ class IndexController extends CommonController
         }
 
         if (!$list) {
-            return show(0, "not data");
+            return show(0, "No data.");
         }
 
         $data = array();

@@ -19,7 +19,6 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-9 col-md-9">
-
             <div class="news-list">
                 <volist name="result['listNews']" id="vo">
                     <dl>
@@ -36,11 +35,11 @@
                         </dd>
                     </dl>
                 </volist>
-                {$result['pageres']}
 
+                <div class="page">
+                    {$result['pageres']}
+                </div>
             </div>
-
-            <!--<button id="sing_more" type="button" class="btn btn-primary btn-lg btn-block sing_display_none">更多</button>-->
         </div>
         <!--start right -->
 
@@ -48,11 +47,10 @@
         <!-- end right-->
     </div>
 </div>
+
 <include file="Index/footer"/>
 </body>
-<script src="/Public/js/jquery.js"></script>
-<script>
 
-</script>
+<script src="/Public/js/jquery.js"></script>
 <script src="/Public/js/admin/common.js"></script>
 </html>

@@ -9,19 +9,18 @@
  */
 
 namespace Home\Controller;
-use Think\Controller;
 
 class DetailController extends CommonController
 {
-    public function index() {
+    public function index($type='') {
         $id = intval(I('id'));
         if (!$id || $id <= 0) {
             $this->error("ID不合法！");
         }
 
         $news = D("News")->find($id);
-        if (!$news || $news['status'] != 1) {
-            return $this->error("ID不存在或资讯被关闭！");
+        if ($type != 'preview' && (!$news || $news['status'] != 1)) {
+            return $this->error("文章不存在或资讯被关闭！");
         }
 
         // 计数器加一
@@ -50,8 +49,9 @@ class DetailController extends CommonController
     public function view() {
         if (!getLoginUsername()) {
             $this->error("您没有权限访问该页面！");
+            return;
         }
 
-        $this->index();
+        $this->index('preview');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Desp:
+ * Desp: 首页分类控制器
  * User: d4smart
  * Date: 2016/11/3
  * Time: 10:16
@@ -9,7 +9,6 @@
  */
 
 namespace Home\Controller;
-use Think\Controller;
 
 class CatController extends CommonController
 {
@@ -29,15 +28,16 @@ class CatController extends CommonController
         // 广告位数据
         $advNews = D("PositionContent")->select(array('status'=>1, 'position_id'=>3), 3);
 
+        // 分页展示
         $page = $_REQUEST['p'] ? $_REQUEST['p'] : 1;
         $pageSize = 20;
-        $conds = array(
+        $conditions = array(
             'status' => 1,
             'thumb' => array('neq', ''),
             'catid' => $id,
         );
-        $news = D("News")->getNews($conds, $page, $pageSize);
-        $count = D("News")->getNewsCount($conds);
+        $news = D("News")->getNews($conditions, $page, $pageSize);
+        $count = D("News")->getNewsCount($conditions);
 
         $res = new \Think\Page($count, $pageSize);
         $pageres = $res->show();
