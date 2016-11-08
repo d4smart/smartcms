@@ -11,7 +11,7 @@ return array(
     'MD5_SUF' => '小舟从此逝，江海寄余生',
 
     // 显示页面Trace信息
-    'SHOW_PAGE_TRACE' => true,
+    // 'SHOW_PAGE_TRACE' => true,
 
     'HTML_FILE_SUFFIX' => '.html',
 );
