@@ -1,6 +1,6 @@
 <?php
 /**
- * Desp:
+ * Desp: 网站基本配置模型
  * User: d4smart
  * Date: 2016/11/1
  * Time: 19:26

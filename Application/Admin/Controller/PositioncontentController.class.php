@@ -58,6 +58,7 @@ class PositioncontentController extends CommonController
 
             try {
                 $_POST['create_time'] = time();
+                $_POST['update_time'] = time();
                 $id = D("PositionContent")->insert($_POST);
                 if ($id) {
                     return show(1, "新增成功！");

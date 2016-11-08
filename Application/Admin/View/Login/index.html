@@ -1,21 +1,22 @@
 <!DOCTYPE html>
+<?php
+    $config = D("Basic")->select();
+?>
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="{$config.keywords}">
+    <meta name="description" content="{$config.description}">
+    <meta name="author" content="d4smart">
     <title>SmartCms内容管理平台</title>
-
     <!-- Bootstrap core CSS -->
     <link href="/Public/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="/Public/css/home/main.css" rel="stylesheet">
     <link href="/Public/css/home/login.css" rel="stylesheet">
+    <link rel="shortcut icon" href="http://www.d4smarter.com/favicon.ico"/>
 </head>
 
 <body>

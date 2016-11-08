@@ -1,6 +1,6 @@
 <?php
 /**
- * Desp:
+ * Desp: 用户模型
  * User: d4smart
  * Date: 2016/10/25
  * Time: 18:39
@@ -30,7 +30,6 @@ class AdminModel extends Model
     }
 
     public function updateByAdminId($id, $data) {
-
         if(!$id || !is_numeric($id)) {
             throw_exception("ID不合法");
         }
@@ -55,10 +54,10 @@ class AdminModel extends Model
     }
 
     /**
-     * 通过id更新的状态
-     * @param $id
-     * @param $status
-     * @return bool
+     * 通过id更新用户状态
+     * @param $id 用户id
+     * @param $status 用户状态
+     * @return bool 是否更新成功
      */
     public function updateStatusById($id, $status) {
         if(!is_numeric($status)) {

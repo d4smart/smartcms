@@ -1,6 +1,6 @@
 <?php
 /**
- * Desp:
+ * Desp: 菜单模型
  * User: d4smart
  * Date: 2016/10/26
  * Time: 14:30

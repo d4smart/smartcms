@@ -1,6 +1,6 @@
 <?php
 /**
- * Desp:
+ * Desp: 新闻模型
  * User: d4smart
  * Date: 2016/10/28
  * Time: 13:50
@@ -27,6 +27,7 @@ class NewsModel extends Model
 
         $data['username'] = getLoginUsername();
         $data['create_time'] = time();
+        $data['update_time'] = time();
         return $this->_db->add($data);
     }
 

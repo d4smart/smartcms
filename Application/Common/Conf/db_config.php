@@ -1,6 +1,6 @@
 <?php
 /**
- * Desp: 数据库配置
+ * Desp: 数据库配置文件
  * User: d4smart
  * Date: 2016/10/25
  * Time: 18:32

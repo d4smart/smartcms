@@ -1,3 +1,4 @@
 ﻿## 项目简介
 
-使用ThinkPHP开发的一个CMS内容管理网站，AJAX异步，使用kindeditor,异步图片上传
+使用ThinkPHP开发的一个CMS内容管理网站，AJAX异步，使用kindeditor文本编辑器,异步图片上传，后台可以管理文章、菜单、推荐位、用户和网站
+的基本配置

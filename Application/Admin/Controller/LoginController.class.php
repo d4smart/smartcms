@@ -1,10 +1,10 @@
 <?php
+/**
+ * 登陆控制器
+ */
 namespace Admin\Controller;
 use Think\Controller;
 
-/**
- * use Common\Model 这块可以不需要使用，框架默认会加载里面的内容
- */
 class LoginController extends Controller
 {
 
@@ -26,12 +26,12 @@ class LoginController extends Controller
         }
 
         $ret = D('Admin')->getAdminByUsername($username);
-        if ($ret || $ret['status'] != 1) {
+        if ($ret && $ret['status'] != -1) {
             if ($ret['password'] == getMd5Password($password)) {
                 D("Admin")->updateByAdminId($ret['admin_id'], array(
                     'lastlogintime' => time(),
                     //'lastloginip' => getenv('HTTP_CLIENT_IP'),
-            ));
+                ));
                 session('adminUser', $ret);
                 return show(1, '登陆成功！');
             } else {

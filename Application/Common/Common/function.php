@@ -15,7 +15,7 @@ function show($status, $message, $data=array()) {
         'data'      =>  $data
     );
 
-    exit(json_encode($result));
+    echo json_encode($result);
 }
 
 function getMd5Password($password) {
@@ -27,6 +27,7 @@ function getMenuType($type) {
 }
 
 function status($status) {
+    $str = '';
     if ($status == 0) {
         $str = "关闭";
     } elseif ($status == 1) {
@@ -82,6 +83,7 @@ function getCopyFromById($id) {
 function hasThumb($thumb) {
     if ($thumb) {
         return '<span style="color:red">有</spanstyle>';
+        // return '<img src='.$thumb.' />';
     }
     return "无";
 }

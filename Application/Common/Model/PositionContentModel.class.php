@@ -1,6 +1,6 @@
 <?php
 /**
- * Desp:
+ * Desp: 推荐位内容模型
  * User: d4smart
  * Date: 2016/10/31
  * Time: 11:12
@@ -16,7 +16,6 @@ class PositionContentModel extends Model
     private $_db = '';
 
     public function __construct() {
-        parent::__construct();
         $this->_db = M('position_content');
     }
 

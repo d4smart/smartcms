@@ -1,6 +1,6 @@
 <?php
 /**
- * Desp:
+ * Desp: 新闻内容模型
  * User: d4smart
  * Date: 2016/10/28
  * Time: 14:03
@@ -16,7 +16,6 @@ class NewsContentModel extends Model
     private $_db = '';
 
     public function __construct() {
-        parent::__construct();
         $this->_db = M('news_content');
     }
 
@@ -26,6 +25,7 @@ class NewsContentModel extends Model
         }
 
         $data['create_time'] = time();
+        $data['update_time'] = time();
         if (isset($data['content']) && $data['content']) {
             $data['content'] = htmlspecialchars($data['content']);
         }

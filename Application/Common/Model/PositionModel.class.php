@@ -1,6 +1,6 @@
 <?php
 /**
- * Desp: 推荐位管理操作
+ * Desp: 推荐位模型
  * User: d4smart
  * Date: 2016/10/31
  * Time: 9:28
@@ -16,15 +16,13 @@ class PositionModel extends Model
     private $_db = '';
 
     public function __construct() {
-        parent::__construct();
         $this->_db = M("position");
     }
 
     public function select($data = array()) {
         $conditions = $data;
-        $list = $this->_db->where($conditions)->order('id')->select();
-        return $list;
-    }
+        return $this->_db->where($conditions)->order('id')->select();
+}
 
     public function find($id) {
         return $this->_db->find($id);

@@ -9,7 +9,6 @@
  */
 
 namespace Admin\Controller;
-use Think\Controller;
 
 class ImageController extends CommonController
 {
@@ -35,9 +34,9 @@ class ImageController extends CommonController
         $res = $upload->upload();
 
         if ($res === false) {
-            return showKind(1, "上传失败！");
+            return showKind(0, "上传失败！");
         } else {
-            return showKind(0, $res);
+            return showKind(1, $res);
         }
     }
 }

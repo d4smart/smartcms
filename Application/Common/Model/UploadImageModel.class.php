@@ -1,15 +1,14 @@
 <?php
-namespace Common\Model;
-use Think\Model;
-
 /**
  * 上传图片类
  * @author  singwa
  */
+
+namespace Common\Model;
+use Think\Model;
+
 class UploadImageModel extends Model {
     private $_uploadObj = '';
-    private $_uploadImageData = '';
-
     const UPLOAD = 'upload';
 
     public function __construct() {
@@ -24,7 +23,7 @@ class UploadImageModel extends Model {
 
         if($res) {
             return '/' .self::UPLOAD . '/' . $res['imgFile']['savepath'] . $res['imgFile']['savename'];
-        }else{
+        } else {
             return false;
         }
     }
@@ -34,7 +33,7 @@ class UploadImageModel extends Model {
 
         if($res) {
             return '/' .self::UPLOAD . '/' . $res['file']['savepath'] . $res['file']['savename'];
-        }else{
+        } else {
             return false;
         }
     }

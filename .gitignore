@@ -1,3 +1,4 @@
 # Created by .ignore support plugin (hsz.mobi)
 Runtime
 .phpstorm.meta.php
+db_config.php
