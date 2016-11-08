@@ -30,7 +30,7 @@ class LoginController extends Controller
             if ($ret['password'] == getMd5Password($password)) {
                 D("Admin")->updateByAdminId($ret['admin_id'], array(
                     'lastlogintime' => time(),
-                    //'lastloginip' => getenv('HTTP_CLIENT_IP'),
+                    'lastloginip' => $_SERVER['REMOTE_ADDR'],
                 ));
                 session('adminUser', $ret);
                 return show(1, '登陆成功！');

@@ -16,6 +16,7 @@ class PositionContentModel extends Model
     private $_db = '';
 
     public function __construct() {
+        parent::__construct();
         $this->_db = M('position_content');
     }
 

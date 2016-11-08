@@ -85,20 +85,21 @@ class PositioncontentController extends CommonController
         $this->display();
     }
 
-    public function save($data) {
-        $id = $data['id'];
-        unset($data['id']);
-        $data['update_time'] = time();
+    public function save() {
+        $id = intval(I('id'));
+        unset($_POST['id']);
+        $_POST['update_time'] = time();
+
         // 继续使用文章的缩略图
-        if ($data['news_id']) {
+        if ($_POST['news_id']) {
             $res = D('News')->find(intval(I('news_id')));
             if ($res && is_array($res)) {
-                $data['thumb'] = $res['thumb'];
+                $_POST['thumb'] = $res['thumb'];
             }
         }
 
         try {
-            $resId = D("PositionContent")->updateById($id, $data);
+            $resId = D("PositionContent")->updateById($id, $_POST);
             if ($resId === false) {
                 return show(0, "更新失败！");
             }

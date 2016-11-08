@@ -82,8 +82,7 @@ function getCopyFromById($id) {
 
 function hasThumb($thumb) {
     if ($thumb) {
-        return '<span style="color:red">有</spanstyle>';
-        // return '<img src='.$thumb.' />';
+        return '<span style="color: red;">有缩略图</span>';
     }
-    return "无";
+    return "无缩略图";
 }

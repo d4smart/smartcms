@@ -57,7 +57,7 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-10">
+                <div class="col-lg-12">
                     <h3></h3>
                     <div class="table-responsive">
                         <form id="singcms-listorder">
@@ -68,10 +68,13 @@
                                     <th width="6">排序</th>
                                     <th>id</th>
                                     <th>标题</th>
+                                    <th>封面图</th>
                                     <th>栏目</th>
                                     <th>来源</th>
-                                    <th>封面图</th>
+                                    <th>作者</th>
+                                    <th>点击数</th>
                                     <th>创建时间</th>
+                                    <th>修改时间</th>
                                     <th>状态</th>
                                     <th>操作</th>
                                 </tr>
@@ -81,15 +84,22 @@
                                     <tr>
                                         <td><input type="checkbox" name="pushcheck" value="{$new.news_id}"></td>
                                         <td><input size=4 type='text' name='listorder[{$new.news_id}]'
-                                                   value="{$new.listorder}"/></td><!--6.7-->
+                                                   value="{$new.listorder}"/></td>
                                         <td>{$new.news_id}</td>
                                         <td>{$new.title}</td>
+                                        <td>
+                                            <if condition="$new['thumb']">
+                                                <img src="{$new.thumb}" style="width: 48px;height: 32px;" />
+                                                <else />
+                                                <span style="color: #880000;">无缩略图</span>
+                                            </if>
+                                        </td>
                                         <td>{$new.catid|getCateName=$websiteMenu,###}</td>
                                         <td>{$new.copyfrom|getCopyFromById}</td>
-                                        <td>
-                                            {$new.thumb|hasThumb}
-                                        </td>
+                                        <td><em>{$new.username}</em></td>
+                                        <td>{$new.count}</td>
                                         <td>{$new.create_time|date="Y-m-d H:i",###}</td>
+                                        <td>{$new.update_time|date="Y-m-d H:i",###}</td>
                                         <td>
                                             <span attr-status="<if condition=" $new['status'] eq 1">0<else/>1</if>" attr-id="{$new.news_id}" class="sing_cursor singcms-on-off" id="singcms-on-off">
                                                 {$new.status|status}

@@ -30,6 +30,7 @@
                 <div class="col-lg-6">
 
                     <form class="form-horizontal" id="singcms-form">
+                        <input type="hidden" name="id" value="{$vo.id}">
                         <div class="form-group">
                             <label for="inputname" class="col-sm-2 control-label">标题:</label>
                             <div class="col-sm-5">
@@ -102,7 +103,7 @@
 
 <script>
     var SCOPE = {
-        'save_url': '/admin.php?c=positioncontent&a=add',
+        'save_url': '/admin.php?c=positioncontent&a=save',
         'jump_url': '/admin.php?c=positioncontent&a=index',
         'ajax_upload_image_url': '/admin.php?c=image&a=ajaxuploadimage',
         'ajax_upload_swf': '/Public/js/party/uploadify.swf'
