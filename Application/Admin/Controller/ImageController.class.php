@@ -1,6 +1,6 @@
 <?php
 /**
- * Desp:
+ * Desp: 处理图片上传的控制器
  * User: d4smart
  * Date: 2016/10/28
  * Time: 12:04
@@ -23,9 +23,9 @@ class ImageController extends CommonController
         $res = $upload->imageUpload();
 
         if ($res === false) {
-            return show(0, "上传失败！", '');
+            exit(show(0, "上传失败！", ''));
         } else {
-            return show(1, "上传成功！", $res);
+            exit(show(1, "上传成功！", $res));
         }
     }
 
@@ -34,9 +34,9 @@ class ImageController extends CommonController
         $res = $upload->upload();
 
         if ($res === false) {
-            return showKind(0, "上传失败！");
+            exit(showKind(0, "上传失败！"));
         } else {
-            return showKind(1, $res);
+            exit(showKind(1, $res));
         }
     }
 }
