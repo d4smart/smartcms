@@ -42,6 +42,7 @@ class PositioncontentController extends CommonController
                 return show(0, "url和news_id不能同时为空！");
             }
             if (I('id')) {
+                $_POST['update_time'] = time();
                 return $this->save($_POST);
             }
 
