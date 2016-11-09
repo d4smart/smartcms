@@ -14,19 +14,26 @@ use Think\Model;
 class AdminModel extends Model
 {
     private $_db = '';
+    protected $_validate = array(
+        array('username', 'require', '用户名称不得为空！', 1, 'regex', 3),
+        array('password', 'require', '密码不得为空！', 1, 'regex', 1),
+        array('email', 'email', '邮箱填写错误！', 1, 'regex', 3),
+        array('username', '', '用户名称已存在！', 1, 'unique', 3),
+        array('repassword', 'password', '密码不一致！', 1,'confirm', 1), // 验证确认密码是否和密码一致
+        //array('verify', 'check_verify', '验证码不正确！', 1, 'callback', 4),
+    );
 
     public function __construct() {
+        parent::__construct();
         $this->_db = M('admin');
     }
 
     public function getAdminByUsername($username) {
-        $ret = $this->_db->where(array('username'=>$username))->find();
-        return $ret;
+        return $this->_db->where(array('username'=>$username))->find();
     }
 
     public function getAdminByAdminId($adminId=0) {
-        $res = $this->_db->where('admin_id='.$adminId)->find();
-        return $res;
+        return $this->_db->find($adminId);
     }
 
     public function updateByAdminId($id, $data) {
@@ -36,7 +43,13 @@ class AdminModel extends Model
         if(!$data || !is_array($data)) {
             throw_exception('更新的数据不合法');
         }
-        return  $this->_db->where('admin_id='.$id)->save($data); // 根据条件更新记录
+
+        $data['admin_id'] = $id;
+        if ($this->_db->create($data)) {
+            return $this->_db->save();
+        } else {
+            return 0;
+        }
     }
 
     public function insert($data = array()) {
@@ -66,9 +79,8 @@ class AdminModel extends Model
         if(!$id || !is_numeric($id)) {
             throw_exception("ID不合法");
         }
-        $data['status'] = $status;
-        return  $this->_db->where('admin_id='.$id)->save($data); // 根据条件更新记录
 
+        return $this->_db->where(array('admin_id'=>$id))->setField('status', $status);
     }
 
     public function getLastLoginUsers() {

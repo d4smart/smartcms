@@ -45,6 +45,7 @@
                                     <th>id</th>
                                     <th>用户名</th>
                                     <th>真实姓名</th>
+                                    <th>邮箱</th>
                                     <th>最后登录时间</th>
                                     <th>最后登录IP</th>
                                     <th>状态</th>
@@ -57,6 +58,7 @@
                                         <td>{$vo.admin_id}</td>
                                         <td>{$vo.username}</td>
                                         <td>{$vo.realname}</td>
+                                        <td><em>{$vo.email}</em></td>
                                         <td>{$vo.lastlogintime|date="Y-m-d H:i",###}</td>
                                         <td><em>{$vo.lastloginip}</em></td>
                                         <td>

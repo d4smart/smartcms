@@ -35,6 +35,7 @@
                             <label class="col-sm-2 control-label">用户名:</label>
                             <div class="col-sm-5">
                                 {$vo.username}
+                                <input type="hidden" name="username" value="{$vo.username}">
                             </div>
                         </div>
 
@@ -75,7 +76,7 @@
 <script>
     var SCOPE = {
         'save_url': '/admin.php?c=admin&a=save',
-        'jump_url': '',
+        'jump_url': '/admin.php?c=admin',
     };
 </script>
 <include file="Index/footer"/>
