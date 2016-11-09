@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<?php
+    $config = D("Basic")->select();
+?>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="{$config.keywords}">
+    <meta name="description" content="{$config.description}">
+    <meta name="author" content="d4smart">
+    <title>SmartCms内容管理平台</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/Public/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/Public/css/home/main.css" rel="stylesheet">
+    <link href="/Public/css/home/login.css" rel="stylesheet">
+    <link rel="shortcut icon" href="http://www.d4smarter.com/favicon.ico"/>
+</head>
+
+<body>
+<div class="admin_login_wrap container">
+    <h1 style="text-align: center">用户注册</h1>
+
+    <div class="admin_login_border">
+        <div class="admin_input">
+            <form action="" class="form-signin" method="post">
+                <label for="username" class="sr-only">用户名：</label>
+                <input type="text" name="username" value="" id="username" size="35" class="form-control col-md-1" placeholder="用户名"/>
+
+                <label for="password" class="sr-only">密码：</label>
+                <input type="password" name="password" value="" id="password" size="35" class="form-control col-md-1" placeholder="密码"/>
+
+                <label for="repassword" class="sr-only">确认密码：</label>
+                <input type="password" name="repassword" value="" id="repassword" size="35" class="form-control col-md-1" placeholder="确认密码"/>
+
+                <label for="verify">验证码：</label>
+                <input type="text" name="verify" id="verify" size="10" class="" placeholder="输入验证码"/>
+                <img src="__CONTROLLER__/verify" width="100" height="50" style="cursor: pointer;"
+                     onclick="this.src='__CONTROLLER__/verify/'+Math.random();">
+
+                <input type="submit" tabindex="3" value="提交" class="btn btn-primary" />
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <div class="left"><a href="__APP__">返回首页</a></div>
+        <div class="right"><a href="__APP__/Admin/login">登陆</a></div>
+    </div>
+</div>
+</body>
+
+<script src="/Public/js/jquery.js"></script>
+<script src="/Public/js/dialog/layer.js"></script>
+<script src="/Public/js/dialog.js"></script>
+<script src="/Public/js/admin/login.js"></script>
+</html>
