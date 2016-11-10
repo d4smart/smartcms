@@ -14,13 +14,14 @@ use Think\Model;
 class AdminModel extends Model
 {
     private $_db = '';
+
     protected $_validate = array(
-        array('username', 'require', '用户名称不得为空！', 1, 'regex', 3),
+        array('username', 'require', '用户名称不得为空！', 1, 'regex', 1),
         array('password', 'require', '密码不得为空！', 1, 'regex', 1),
-        array('email', 'email', '邮箱填写错误！', 1, 'regex', 3),
-        array('username', '', '用户名称已存在！', 1, 'unique', 3),
+        array('email', 'email', '邮箱填写错误！', 0, 'regex', 3),
+        array('username', '', '用户名称已存在！', 0, 'unique', 3),
         array('repassword', 'password', '密码不一致！', 1,'confirm', 1), // 验证确认密码是否和密码一致
-        //array('verify', 'check_verify', '验证码不正确！', 1, 'callback', 4),
+        array('verify', 'check_verify', '验证码不正确！', 0, 'callback', 3),
     );
 
     public function __construct() {
@@ -37,14 +38,8 @@ class AdminModel extends Model
     }
 
     public function updateByAdminId($id, $data) {
-        if(!$id || !is_numeric($id)) {
-            throw_exception("ID不合法");
-        }
-        if(!$data || !is_array($data)) {
-            throw_exception('更新的数据不合法');
-        }
-
         $data['admin_id'] = $id;
+
         if ($this->_db->create($data)) {
             return $this->_db->save();
         } else {
@@ -53,9 +48,6 @@ class AdminModel extends Model
     }
 
     public function insert($data = array()) {
-        if(!$data || !is_array($data)) {
-            return 0;
-        }
         return $this->_db->add($data);
     }
 
@@ -73,13 +65,6 @@ class AdminModel extends Model
      * @return bool 是否更新成功
      */
     public function updateStatusById($id, $status) {
-        if(!is_numeric($status)) {
-            throw_exception("status不能为非数字");
-        }
-        if(!$id || !is_numeric($id)) {
-            throw_exception("ID不合法");
-        }
-
         return $this->_db->where(array('admin_id'=>$id))->setField('status', $status);
     }
 
@@ -92,5 +77,37 @@ class AdminModel extends Model
 
         $res = $this->_db->where($data)->count();
         return $res['tp_count'];
+    }
+
+    /**
+     * 用户登陆函数
+     * 根据传递的username和password判断用户登录是否合法，并做出相应跳转
+     * @return bool 登陆成功：true|登录失败：false
+     */
+    public function login() {
+        $password = $this->password; //传递的密码
+        $info = $this->where(array('username'=>$this->username))->find(); //数据库中存储的密码（md5）
+
+        // 是否存在用户
+        if ($info) {
+            // 密码输入是否正确
+            if ($info['password'] == getMd5Password($password)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 验证码验证函数
+     * @param $code, @param string $id
+     * @return bool 验证码检查结果
+     */
+    public function check_verify($code, $id='') {
+        $verify = new \Think\Verify();
+        return $verify->check($code, $id);
     }
 }

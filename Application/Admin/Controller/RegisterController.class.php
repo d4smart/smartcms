@@ -22,6 +22,27 @@ class RegisterController extends Controller
         $this->display();
     }
 
+    public function register() {
+        if ($_POST) {
+            $admin = D('Admin');
+            // 注册模式数据验证
+            if ($admin->create($_POST)) {
+                // 对密码md5加密
+                $_POST['password'] = getMd5Password(I('password'));
+
+                if ($admin->add($_POST)) {
+                    return show(1, "注册成功！");
+                } else {
+                    return show(0, "注册失败！");
+                }
+            } else {
+                return show(0, $admin->getError());
+            }
+        } else {
+            return show(0, "没有提交数据！");
+        }
+    }
+
     public function check() {
         $admin = D('admin');
         // 注册模式数据验证

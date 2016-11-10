@@ -17,29 +17,39 @@ class LoginController extends Controller
 
     public function check() {
         $username = I('username');
-        $password = I('password');
-        if (!trim($username)) {
-            return show(0, '用户名不能为空！');
-        }
-        if (!trim($password)) {
-            return show(0, '密码不能为空！');
-        }
-
         $ret = D('Admin')->getAdminByUsername($username);
+        $_POST['admin_id'] = $ret['admin_id'];
+
         if ($ret && $ret['status'] != -1) {
-            if ($ret['password'] == getMd5Password($password)) {
-                D("Admin")->updateByAdminId($ret['admin_id'], array(
-                    'lastlogintime' => time(),
-                    'lastloginip' => $_SERVER['REMOTE_ADDR'],
-                ));
-                session('adminUser', $ret);
-                return show(1, '登陆成功！');
+            $admin = D('Admin');
+            if ($admin->create($_POST)) {
+                if ($admin->login()) {
+                    D("Admin")->updateByAdminId($ret['admin_id'], array(
+                        'lastlogintime' => time(),
+                        'lastloginip' => $_SERVER['REMOTE_ADDR'],
+                    ));
+                    session('adminUser', $ret);
+                    return show(1, '登陆成功！');
+                } else {
+                    return show(0, '您的用户名或密码错误！');
+                }
             } else {
-                return show(0, '密码错误！');
+                return show(0, $admin->getError());
             }
         } else {
             return show(0, '该用户不存在或已被锁定！');
         }
+    }
+
+    /**
+     * 验证码生成函数
+     */
+    public function verify() {
+        $verify = new \Think\Verify();
+        $verify->fontSize = 30;
+        $verify->length = 4;    //4位验证码
+        $verify->useNoise = true; //使用噪点
+        $verify->entry();
     }
 
     public function logout() {
