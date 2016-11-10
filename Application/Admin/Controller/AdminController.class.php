@@ -10,19 +10,15 @@ class AdminController extends CommonController
 {
     public function index() {
         $admin = D('Admin');
-        $admins = $admin->where(array('status'=>array('neq', -1)))
-                    ->order('admin_id')->select();
+        $admins = $admin->getAdmins();
         $this->assign('admins', $admins);
         $this->display();
     }
 
     public function add() {
-        // 保存数据
         if(IS_POST) {
+            // 保存数据
             $admin = D('Admin');
-            if(!isset($_POST['password'])) {
-                return show(0, '密码不能为空');
-            }
             $_POST['password'] = getMd5Password($_POST['password']);
 
             if ($admin->create($_POST)) {
@@ -41,8 +37,7 @@ class AdminController extends CommonController
     public function setStatus() {
         $admin = D('Admin');
 
-        $res = $admin->where(array('admin_id' => I('id')))
-                    ->setField('status', I('status'));
+        $res = $admin->updateStatusById(I('id'), I('status'));
         if ($res) {
             return show(1, "操作成功！");
         } else {
@@ -52,7 +47,7 @@ class AdminController extends CommonController
 
     public function personal() {
         $res = $this->getLoginUser();
-        $user = D("Admin")->getAdminByAdminId($res['admin_id']);
+        $user = D("Admin")->find($res['admin_id']);
         $this->assign('vo',$user);
         $this->display();
     }

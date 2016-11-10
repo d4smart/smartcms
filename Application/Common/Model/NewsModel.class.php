@@ -13,141 +13,99 @@ use Think\Model;
 
 class NewsModel extends Model
 {
-    private $_db = '';
+    private $news = '';
+
+    protected $_validate = array(
+        array('title', 'require', '标题不得为空！', 1, 'regex', 3),
+        array('small_title', 'require', '短标题不得为空！', 1, 'regex', 3),
+        array('title_font_color', 'require', '标题颜色不得为空！', 1, 'regex', 3),
+        array('catid', 'require', '所属栏目不得为空！', 1, 'regex', 3),
+        array('description', 'require', '文章描述不得为空！', 1, 'regex', 3),
+        array('keywords', 'require', '文章关键词不得为空！', 1, 'regex', 3),
+    );
 
     public function __construct() {
         parent::__construct();
-        $this->_db = M('news');
+        $this->news = M('news');
     }
 
     public function insert($data=array()) {
-        if (!is_array($data) || !$data) {
-            return 0;
-        }
-
         $data['username'] = getLoginUsername();
         $data['create_time'] = time();
         $data['update_time'] = time();
-        return $this->_db->add($data);
+        return $this->news->add($data);
     }
 
     public function select($data = array(), $limit = 0) {
         if ($data['title']) {
             $data['title'] = array('like', '%'.$data['title'].'%');
         }
-        $this->_db->where($data)->order('listorder desc, news_id');
+        $this->news->where($data)->order('listorder desc, news_id');
         if ($limit) {
-            $this->_db->limit($limit);
+            $this->news->limit($limit);
         }
-        $list = $this->_db->select();
+        $list = $this->news->select();
         return $list;
     }
 
-    public function getNews($data, $page, $pageSize=10) {
-        $conditions = $data;
-
-        if (isset($data['title']) && $data['title']) {
-            $conditions['title'] = array('like', '%'.$data['title'].'%');
+    public function getNews($conditions, $page, $pageSize=10) {
+        if (isset($conditions['title']) && $conditions['title']) {
+            $conditions['title'] = array('like', '%'.$conditions['title'].'%');
         }
-        if (isset($data['catid']) && $data['catid']) {
-            $conditions['catid'] = intval($data['catid']);
-        }
-        $conditions['status'] = array('neq', -1);
 
         $offset = ($page - 1) * $pageSize;
-        $list = $this->_db->where($conditions)
+        $list = $this->news->where($conditions)
                 ->order('listorder desc, news_id')
                 ->limit($offset, $pageSize)->select();
         return $list;
     }
 
-    public function getNewsCount($data = array()) {
-        $conditions = $data;
-
-        if (isset($data['title']) && $data['title']) {
-            $conditions['title'] = array('like', '%'.$data['title'].'%');
-        }
-        if (isset($data['catid']) && $data['catid']) {
-            $conditions['catid'] = intval($data['catid']);
+    public function getNewsCount($conditions = array()) {
+        if (isset($conditions['title']) && $conditions['title']) {
+            $conditions['title'] = array('like', '%'.$conditions['title'].'%');
         }
 
-        return $this->_db->where($conditions)->count();
+        return $this->news->where($conditions)->count();
     }
 
     public function find($id) {
-        if (!is_int($id) || !$id) {
-            return 0;
-        }
-        $data = $this->_db->where('news_id='.$id)->find();
-        return $data;
+        return $this->news->find($id);
     }
 
     public function updateById($id, $data) {
-        if (!$id || !is_numeric($id)) {
-            throw_exception("ID不合法！");
-        }
-        if (!$data || !is_array($data)) {
-            throw_exception("更新数据不合法！");
-        }
-
         $data['update_time'] = time();
-        return $this->_db->where('news_id='.$id)->save($data);
+        return $this->news->where('news_id='.$id)->save($data);
     }
 
     public function updateStatusById($id, $status) {
-        if(!is_numeric($status)) {
-            throw_exception("status不能为非数字！");
-        }
-        if (!$id || !is_numeric($id)) {
-            throw_exception("id不合法！");
-        }
-
-        $data['status'] = $status;
-        return $this->_db->where('news_id='.$id)->save($data);
+        return $this->news->where('news_id='.$id)->setField('status', $status);
     }
 
     public function updateListOrderById($id, $listorder) {
-        if (!$id || !is_numeric($id)) {
-            throw_exception("ID不合法！");
-        }
-
-        $data = array('listorder'=>intval($listorder));
-        return $this->_db->where('news_id='.$id)->save($data);
+        return $this->news->where('news_id='.$id)->setField('listorder', $listorder);
     }
 
-    public function getNewsByNewsIdIn($newsIds) {
-        if (!is_array($newsIds)) {
-            throw_exception("参数不合法！");
-        }
-
+    public function getNewsByNewsIdIn($newsIds = array()) {
         $data = array(
             'news_id' => array('in', implode(',', $newsIds)),
         );
 
-        return $this->_db->where($data)->select();
+        return $this->news->where($data)->select();
     }
 
-    public function getRank($data=array(), $limit=10) {
-        $list = $this->_db->where($data)->order('count desc, news_id')->select();
+    public function getRank($data = array(), $limit = 10) {
+        $list = $this->news->where($data)->order('count desc, news_id')->limit($limit)->select();
         return $list;
     }
 
     public function updateCount($id, $count) {
-        if (!$id || !is_numeric($id)) {
-            throw_exception("ID不合法！");
-        }
-        if (!is_numeric($count)) {
-            throw_exception("count不能为非数字！");
-        }
-
-        $data['count'] = $count;
-        return $this->_db->where('news_id='.$id)->save($data);
+        return $this->news->where('news_id='.$id)->setField('count', $count);
     }
 
     public function maxCount() {
         $data = array(
           'status' => 1,
         );
-        return $this->_db->where($data)->order('count desc')->find();
+        return $this->news->where($data)->order('count desc')->find();
     }
 }

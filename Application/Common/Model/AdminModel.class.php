@@ -13,7 +13,7 @@ use Think\Model;
 
 class AdminModel extends Model
 {
-    private $_db = '';
+    private $admin = '';
 
     protected $_validate = array(
         array('username', 'require', '用户名称不得为空！', 1, 'regex', 1),
@@ -26,36 +26,27 @@ class AdminModel extends Model
 
     public function __construct() {
         parent::__construct();
-        $this->_db = M('admin');
+        $this->admin = M('admin');
     }
 
     public function getAdminByUsername($username) {
-        return $this->_db->where(array('username'=>$username))->find();
-    }
-
-    public function getAdminByAdminId($adminId=0) {
-        return $this->_db->find($adminId);
+        return $this->admin->where(array('username'=>$username))->find();
     }
 
     public function updateByAdminId($id, $data) {
         $data['admin_id'] = $id;
-
-        if ($this->_db->create($data)) {
-            return $this->_db->save();
-        } else {
-            return 0;
-        }
+        return $this->admin->save($data);
     }
 
     public function insert($data = array()) {
-        return $this->_db->add($data);
+        return $this->admin->add($data);
     }
 
     public function getAdmins() {
         $data = array(
             'status' => array('neq',-1),
         );
-        return $this->_db->where($data)->order('admin_id')->select();
+        return $this->admin->where($data)->order('admin_id')->select();
     }
 
     /**
@@ -65,7 +56,7 @@ class AdminModel extends Model
      * @return bool 是否更新成功
      */
     public function updateStatusById($id, $status) {
-        return $this->_db->where(array('admin_id'=>$id))->setField('status', $status);
+        return $this->admin->where(array('admin_id'=>$id))->setField('status', $status);
     }
 
     public function getLastLoginUsers() {
@@ -75,8 +66,8 @@ class AdminModel extends Model
             'lastlogintime' => array("gt",$time),
         );
 
-        $res = $this->_db->where($data)->count();
-        return $res['tp_count'];
+        $res = $this->admin->where($data)->count();
+        return $res;
     }
 
     /**

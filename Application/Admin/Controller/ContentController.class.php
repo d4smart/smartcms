@@ -14,23 +14,23 @@ use Think\Exception;
 class ContentController extends CommonController
 {
     public function index() {
-        $conds = array();
+        $conditions = array();
 
         $title = I('title');
         $catid = I('catid');
         if ($title) {
-            $conds['title'] = $title;
+            $conditions['title'] = $title;
             $this->assign('title', $title);
         }
         if ($catid) {
-            $conds['catid'] = intval($catid);
-            $this->assign('cateid', $conds['catid']);
+            $conditions['catid'] = intval($catid);
+            $this->assign('cateid', $conditions['catid']);
         }
 
         $page = $_REQUEST['p'] ? $_REQUEST['p'] : 1;
         $pageSize = 10;
-        $news = D("News")->getNews($conds, $page, $pageSize);
-        $count = D("News")->getNewsCount($conds);
+        $news = D("News")->getNews($conditions, $page, $pageSize);
+        $count = D("News")->getNewsCount($conditions);
 
         $res = new \Think\Page($count, $pageSize);
         $pageres = $res->show();
@@ -45,53 +45,50 @@ class ContentController extends CommonController
 
     public function add() {
         if ($_POST) {
-            if (!isset($_POST['title']) || !$_POST['title']) {
-                return show(0, "标题不存在！");
-            }
-            if (!isset($_POST['small_title']) || !$_POST['small_title']) {
-                return show(0, "短标题不存在！");
-            }
-            if (!isset($_POST['catid']) || !$_POST['catid']) {
-                return show(0, "文章栏目不存在！");
-            }
-            if (!isset($_POST['keywords']) || !$_POST['keywords']) {
-                return show(0, "关键字不存在！");
-            }
-            if (!isset($_POST['content']) || !$_POST['content']) {
-                return show(0, "content不存在！");
-            }
-
             if (I('news_id')) {
-                return $this->save($_POST);
+                return $this->save();
             }
 
-            $newsId = D("News")->insert($_POST);
-            if ($newsId) {
-                $newsContent['content'] = $_POST['content'];
-                $newsContent['news_id'] = $newsId;
-                $cid = D("NewsContent")->insert($newsContent);
+            $news = D('News');
+            $newsContent = D('NewsContent');
+            $_POST['username'] = getLoginUsername();
+            $_POST['create_time'] = time();
+            $_POST['update_time'] = time();
 
-                if ($cid) {
-                    return show(1, "新增成功！");
+            if ($news->create($_POST)) {
+                $news_id = $news->add();
+                if ($news_id) {
+                    $news_content['news_id'] = $news_id;
+                    $news_content['content'] = htmlspecialchars($_POST['content']);
+                    $news_content['create_time'] = time();
+                    $news_content['update_time'] = time();
+
+                    if ($newsContent->create($news_content)) {
+                        if ($newsContent->add()) {
+                            return show(1, "新增成功！");
+                        } else {
+                            return show(0, "文章主表插入成功，副表插入失败！");
+                        }
+                    } else {
+                        return show(0, $newsContent->getError());
+                    }
                 } else {
-                    return show(0, "文章主表插入成功，副表插入失败！");
+                    return show(0, "添加失败！");
                 }
             } else {
-                return show(0, "插入失败！");
+                return show(0, $news->getError());
             }
-
-        } else {
-            $websiteMenu = D("Menu")->getBarMenus();
-            $titleFontColor = C("TITLE_FONT_COLOR");
-            $copyFrom = C("COPY_FROM");
-
-            $this->assign('websiteMenu', $websiteMenu);
-            $this->assign('titleFontColor', $titleFontColor);
-            $this->assign('copyFrom', $copyFrom);
-
-            $this->display();
         }
 
+        $websiteMenu = D("Menu")->getBarMenus();
+        $titleFontColor = C("TITLE_FONT_COLOR");
+        $copyFrom = C("COPY_FROM");
+
+        $this->assign('websiteMenu', $websiteMenu);
+        $this->assign('titleFontColor', $titleFontColor);
+        $this->assign('copyFrom', $copyFrom);
+
+        $this->display();
     }
 
     public function edit() {
@@ -116,31 +113,43 @@ class ContentController extends CommonController
         $this->display();
     }
 
-    public function save($data) {
-        $newsId = $data['news_id'];
-        unset($data['news_id']);
+    public function save() {
+        $news = D('News');
+        $newsContent = D('NewsContent');
+        $newsId = $_POST['news_id'];
+        $_POST['username'] = getLoginUsername();
+        $_POST['update_time'] = time();
 
-        try {
-            $id = D("News")->updateById($newsId, $data);
-            $newsContentData['content'] = $data['content'];
-            $conId = D("NewsContent")->updateNewsById($newsId, $newsContentData);
+        if ($news->create($_POST)) {
+            if ($news->save()) {
+                $news_content['content'] = htmlspecialchars($_POST['content']);
+                $news_content['update_time'] = time();
 
-            if ($id === false || $conId === false) {
+                if ($newsContent->create($news_content)) {
+                    if ($newsContent->where(array('news_id'=>$newsId))->save()) {
+                        return show(1, "更新成功！");
+                    } else {
+                        return show(0, "文章主表更新成功，副表更新失败！");
+                    }
+                } else {
+                    return show(0, $newsContent->getError());
+                }
+            } else {
                 return show(0, "更新失败！");
             }
-            return show(1, "更新成功！");
-        } catch (Exception $e) {
-            return show(0, $e->getMessage());
+        } else {
+            return show(0, $news->getError());
         }
-
     }
 
     public function setStatus() {
-        $data = array(
-            'id' => intval(I('id')),
-            'status' => intval(I('status')),
-        );
-        return parent::setStatus($data, "News");
+        $news = D('News');
+        $res = $news->updateStatusById(I('id'), I('status'));
+        if ($res) {
+            return show(1, "操作成功！");
+        } else {
+            return show(0, "操作失败！");
+        }
     }
 
     public function listorder() {
@@ -160,6 +169,7 @@ class ContentController extends CommonController
         }
 
         try {
+            $position_content = D('PositionContent');
             $news = D("News")->getNewsByNewsIdIn($newsId);
             if (!$news) {
                 return show(0, "没有相关内容");
@@ -174,7 +184,7 @@ class ContentController extends CommonController
                     'status' => 1,
                     'create_time' => $new['create_time'],
                 );
-                D("PositionContent")->insert($data);
+                $position_content->add($data);
             }
         } catch (Exception $e) {
             return show(0, $e->getMessage());
