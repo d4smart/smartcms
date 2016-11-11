@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<?php
-    $config = D("Basic")->select();
-    $navs = D("Menu")->getBarMenus();
-?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,14 +11,14 @@
 </head>
 
 <body>
-<include file="Index/header"/>
+<include file="Public/header"/>
 <div class="container">
     <div class="row">
         <div class="col-sm-9 col-md-9">
             <div class="news-list">
                 <volist name="result['listNews']" id="vo">
                     <dl>
-                        <dt>{$vo.title}</dt>
+                        <dt><a href="/index.php?c=detail&id={$vo.news_id}" target="_blank">{$vo.title}</a></dt>
                         <dd class="news-img">
                             <a href="/index.php?c=detail&id={$vo.news_id}"><img width="200" height="120"
                                                                                 src="{$vo.thumb}" alt="{$vo.title}"></a>
@@ -43,12 +39,12 @@
         </div>
         <!--start right -->
 
-        <include file="Index/right"/>
+        <include file="Public/right"/>
         <!-- end right-->
     </div>
 </div>
 
-<include file="Index/footer"/>
+<include file="Public/footer"/>
 </body>
 
 <script src="/Public/js/jquery.js"></script>

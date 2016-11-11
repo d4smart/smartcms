@@ -32,17 +32,8 @@ class DetailController extends CommonController
         $menu = D("Menu")->find($news['catid']);
         $news['menu'] = $menu['name'];
 
-        // 获取文章排行
-        $rankNews = $this->getRank();
-        // 广告位数据
-        $advNews = D("PositionContent")->select(array('status'=>1, 'position_id'=>3), 3);
-
-        $this->assign('result', array(
-            'rankNews' => $rankNews,
-            'advNews' => $advNews,
-            'catid' => $news['catid'],
-            'news' => $news,
-        ));
+        $this->assign('result', array('catid' => $news['catid']));
+        $this->assign('vo', $news);
         $this->display("Detail/index");
     }
 

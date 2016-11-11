@@ -15,17 +15,11 @@ class IndexController extends CommonController
         $topSmallNews = D("PositionContent")->select(array('status'=>1, 'position_id'=>2), 3);
         // 首页新闻
         $listNews = D("News")->select(array('status'=>1, 'thumb'=>array('neq','')), 30);
-        // 广告位数据
-        $advNews = D("PositionContent")->select(array('status'=>1, 'position_id'=>3), 3);
-        // 获取文章排行
-        $rankNews = $this->getRank();
 
         $this->assign('result', array(
             'topPicNews' => $topPicNews,
             'topSmallNews' => $topSmallNews,
             'listNews' => $listNews,
-            'advNews' => $advNews,
-            'rankNews' => $rankNews,
             'catid' => 0,
         ));
 

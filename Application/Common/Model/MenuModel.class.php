@@ -52,7 +52,7 @@ class MenuModel extends Model
     public function getAdminMenus() {
         $data = array(
             'status' => array('neq', -1),
-            'type' => 1,
+            'type' => 1, // 后台模块
         );
 
         return $this->menu->where($data)->order('listorder desc, menu_id')->select();
@@ -60,7 +60,7 @@ class MenuModel extends Model
 
     public function getBarMenus() {
         $data = array(
-            'type' => 0,
+            'type' => 0, // 前台模块
             'status' => 1,
         );
 

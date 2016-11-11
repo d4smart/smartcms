@@ -20,13 +20,8 @@ class CatController extends CommonController
 
         $nav = D("Menu")->find($id);
         if (!$nav || $nav['status'] != 1) {
-            return $this->error("栏目ID不存在！/栏目状态不正常！");
+            return $this->error("栏目ID不存在或栏目状态不正常");
         }
-
-        // 获取文章排行
-        $rankNews = $this->getRank();
-        // 广告位数据
-        $advNews = D("PositionContent")->select(array('status'=>1, 'position_id'=>3), 3);
 
         // 分页展示
         $page = $_REQUEST['p'] ? $_REQUEST['p'] : 1;
@@ -43,8 +38,6 @@ class CatController extends CommonController
         $pageres = $res->show();
 
         $this->assign('result', array(
-            'advNews' => $advNews,
-            'rankNews' => $rankNews,
             'catid' => $id,
             'listNews' => $news,
             'pageres' => $pageres,
