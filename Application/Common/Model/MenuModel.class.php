@@ -13,68 +13,52 @@ use Think\Model;
 
 class MenuModel extends Model
 {
-    private $_db = '';
+    private $menu = '';
+
+    protected $_validate = array(
+        array('name', 'require', '菜单名不得为空！', 1, 'regex', 3),
+        array('m', 'require', '模块名不得为空！', 1, 'regex', 3),
+        array('c', 'require', '控制器不得为空！', 1, 'regex', 3),
+        array('f', 'require', '方法不得为空！', 1, 'regex', 3),
+        array('status', 'require', '菜单状态不得为空！', 1, 'regex', 3),
+        array('type', 'require', '菜单类型不得为空！', 1, 'regex', 3),
+    );
 
     public function __construct() {
-        $this->_db = M('menu');
+        parent::__construct();
+        $this->menu = M('menu');
     }
 
     public function insert($data = array()) {
-        if (!$data || !is_array($data)) {
-            return 0;
-        }
-        return $this->_db->add($data);
+        return $this->menu->add($data);
     }
 
     public function getMenus($data, $page, $pageSize=10) {
         $data['status'] = array('neq', -1);
         $offset = ($page - 1) * $pageSize;
-        $list = $this->_db->where($data)->order('listorder desc, menu_id')->limit($offset, $pageSize)->select();
+        $list = $this->menu->where($data)->order('listorder desc, menu_id')->limit($offset, $pageSize)->select();
         return $list;
     }
 
     public function getMenusCount($data=array()) {
         $data['status'] = array('neq', -1);
-        return $this->_db->where($data)->count();
+        return $this->menu->where($data)->count();
     }
 
     public function find($id) {
-        if (!$id || !is_numeric($id)) {
-            return array();
-        }
-        return $this->_db->find($id);
+        return $this->menu->find($id);
     }
 
     public function updateMenuById($id, $data) {
-        if (!$id || !is_numeric($id)) {
-            throw_exception("ID不合法！");
-        }
-        if (!$data || !is_array($data)) {
-            throw_exception("更新的数据不合法！");
-        }
-
-        return $this->_db->where('menu_id='.$id)->save($data);
+        return $this->menu->where('menu_id='.$id)->save($data);
     }
 
     public function updateStatusById($id, $status) {
-        if (!is_numeric($id) || !$id) {
-            throw_exception("ID不合法！");
-        }
-        if (!is_numeric($status)) {
-            throw_exception("状态不合法！");
-        }
-
-        $data['status'] = $status;
-        return $this->_db->where('menu_id='.$id)->save($data);
+        return $this->menu->where('menu_id='.$id)->setField('status', $status);
     }
 
     public function updateListorderById($id, $listorder) {
-        if (!$id || !is_numeric($id)) {
-            throw_exception("ID不合法！");
-        }
-
-        $data = array('listorder' => intval($listorder));
-        return $this->_db->where('menu_id='.$id)->save($data);
+        return $this->menu->where('menu_id='.$id)->setField('listorder', $listorder);
     }
 
     public function getAdminMenus() {
@@ -83,7 +67,7 @@ class MenuModel extends Model
             'type' => 1,
         );
 
-        return $this->_db->where($data)->order('listorder desc, menu_id')->select();
+        return $this->menu->where($data)->order('listorder desc, menu_id')->select();
     }
 
     public function getBarMenus() {
@@ -92,10 +76,7 @@ class MenuModel extends Model
             'status' => 1,
         );
 
-        $res = $this->_db->where($data)
-                ->order('listorder desc, menu_id')
-                ->select();
-        return $res;
+        return $this->menu->where($data)->order('listorder desc, menu_id')->select();
     }
 
 }

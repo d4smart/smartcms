@@ -32,23 +32,16 @@ class PositioncontentController extends CommonController
 
     public function add() {
         if ($_POST) {
-            if (!isset($_POST['position_id']) || !$_POST['position_id']) {
-                return show(0, "推荐位ID不能为空！");
-            }
-            if (!isset($_POST['title']) || !$_POST['title']) {
-                return show(0, "推荐位标题不能为空！");
-            }
             if (!I('url') && !I('news_id')) {
                 return show(0, "url和news_id不能同时为空！");
             }
             if (I('id')) {
-                $_POST['update_time'] = time();
-                return $this->save($_POST);
+                return $this->save();
             }
 
             if (!isset($_POST['thumb']) || !I('thumb')) {
                 if (I('news_id')) {
-                    $res = D('News')->find(intval(I('news_id')));
+                    $res = D('News')->find(I('news_id'));
                     if ($res && is_array($res)) {
                         $_POST['thumb'] = $res['thumb'];
                     }
@@ -57,19 +50,21 @@ class PositioncontentController extends CommonController
                 }
             }
 
-            try {
-                $_POST['create_time'] = time();
-                $_POST['update_time'] = time();
-                $id = D("PositionContent")->insert($_POST);
-                if ($id) {
+            $_POST['create_time'] = time();
+            $_POST['update_time'] = time();
+
+            $positionContent = D('PositionContent');
+            if ($positionContent->create($_POST)) {
+                if ($positionContent->add()) {
                     return show(1, "新增成功！");
                 } else {
                     return show(0, "新增失败！");
                 }
-            } catch (Exception $e) {
-                return show(0, $e->getMessage());
+            } else {
+                return show(0, $positionContent->getError());
             }
         } else {
+            // 渲染添加页面
             $positions = D("Position")->getNormalPositions();
             $this->assign('positions', $positions);
             $this->display();
@@ -78,7 +73,7 @@ class PositioncontentController extends CommonController
 
     public function edit() {
         $id = I('id');
-        $position = D("PositionContent")->find(intval($id));
+        $position = D("PositionContent")->find($id);
         $positions = D("Position")->getNormalPositions();
 
         $this->assign('vo', $position);
@@ -87,35 +82,36 @@ class PositioncontentController extends CommonController
     }
 
     public function save() {
-        $id = intval(I('id'));
-        unset($_POST['id']);
+        $positionContent = D('PositionContent');
         $_POST['update_time'] = time();
 
         // 继续使用文章的缩略图
         if ($_POST['news_id']) {
-            $res = D('News')->find(intval(I('news_id')));
+            $res = D('News')->find(I('news_id'));
             if ($res && is_array($res)) {
                 $_POST['thumb'] = $res['thumb'];
             }
         }
 
-        try {
-            $resId = D("PositionContent")->updateById($id, $_POST);
-            if ($resId === false) {
+        if ($positionContent->create($_POST)) {
+            if ($positionContent->save()) {
+                return show(1, "更新成功！");
+            } else {
                 return show(0, "更新失败！");
             }
-            return show(1, "更新成功！");
-        } catch (Exception $e) {
-            return show(0, $e->getMessage());
+        } else {
+            return show(0, $positionContent->getError());
         }
     }
 
     public function setStatus() {
-        $data = array(
-            'id' => intval(I('id')),
-            'status' => intval(I('status')),
-        );
-        return parent::setStatus($data, "PositionContent");
+        $news = D('PositionContent');
+        $res = $news->updateStatusById(I('id'), I('status'));
+        if ($res) {
+            return show(1, "操作成功！");
+        } else {
+            return show(0, "操作失败！");
+        }
     }
 
     public function listorder() {

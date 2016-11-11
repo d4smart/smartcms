@@ -13,30 +13,33 @@ use Think\Model;
 
 class PositionModel extends Model
 {
-    private $_db = '';
+    private $position = '';
+
+    protected $_validate = array(
+        array('name', 'require', '推荐位标题不得为空！', 1, 'regex', 3),
+        array('description', 'require', '推荐位描述不得为空！', 1, 'regex', 3),
+        array('status', 'require', '推荐位状态不得为空！', 1, 'regex', 3),
+    );
 
     public function __construct() {
         parent::__construct();
-        $this->_db = M("position");
+        $this->position = M("position");
     }
 
-    public function select($data = array()) {
-        $conditions = $data;
-        return $this->_db->where($conditions)->order('id')->select();
+    public function select($conditions = array()) {
+        return $this->position->where($conditions)->order('id')->select();
 }
 
     public function find($id) {
-        return $this->_db->find($id);
+        return $this->position->find($id);
     }
 
     public function updateById($id, $data) {
-        if (!$id || !is_numeric($id)) {
-            throw_exception("ID不合法！");
-        }
-        if (!$data || !is_array($data)) {
-            throw_exception("更新的数据不合法！");
-        }
-        return $this->_db->where('id='.$id)->save($data);
+        return $this->position->where('id='.$id)->save($data);
+    }
+
+    public function updateStatusById($id, $status) {
+        return $this->position->where('id='.$id)->setField('status', $status);
     }
 
     /**
@@ -44,14 +47,12 @@ class PositionModel extends Model
      * @return mixed
      */
     public function getNormalPositions() {
-        $conditions = array('status'=>1);
-        $list = $this->_db->where($conditions)->order('id')->select();
+        $conditions = array('status'=>array('neq', -1));
+        $list = $this->position->where($conditions)->order('id')->select();
         return $list;
     }
 
-    public function getCount($data=array()) {
-        $conditions = $data;
-        $list = $this->_db->where($conditions)->count();
-        return $list;
+    public function getCount($conditions=array()) {
+        return $this->position->where($conditions)->count();
     }
 }

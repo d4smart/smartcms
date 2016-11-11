@@ -17,7 +17,7 @@ class MenuController extends CommonController
         $data = array();
 
         if (isset($_REQUEST['type']) && in_array($_REQUEST['type'], array(0, 1))) {
-            $data['type'] = intval($_REQUEST['type']);
+            $data['type'] = $_REQUEST['type'];
             $this->assign('type', $data['type']);
         } else {
             $this->assign('type', -1);
@@ -40,32 +40,23 @@ class MenuController extends CommonController
 
     public function add() {
         if ($_POST) {
-            if (!isset($_POST['name']) || !$_POST['name']) {
-                return show(0, "菜单名不能为空！");
-            }
-            if (!isset($_POST['m']) || !$_POST['m']) {
-                return show(0, "模块名不能为空！");
-            }
-            if (!isset($_POST['c']) || !$_POST['c']) {
-                return show(0, "控制器不能为空！");
-            }
-            if (!isset($_POST['f']) || !$_POST['f']) {
-                return show(0, "方法名不能为空！");
-            }
-
             if (I('menu_id')) {
-                return $this->save($_POST);
+                return $this->save();
             }
 
-            $menuId = D("Menu")->insert($_POST);
-            if ($menuId) {
-                return show(1, "新增成功！", $menuId);
+            $menu = D('Menu');
+            if ($menu->create($_POST)) {
+                if ($menu->add()) {
+                    return show(1, "新增成功！");
+                } else {
+                    return show(0, "新增失败！");
+                }
+            } else {
+                return show(0, $menu->getError());
             }
-            return show(0, "新增失败！");
-
-        } else {
-            $this->display();
         }
+
+        $this->display();
     }
 
     public function edit() {
@@ -76,27 +67,27 @@ class MenuController extends CommonController
         $this->display();
     }
 
-    public function save($data) {
-        $menuId = $data['menu_id'];
-        unset($data['menu_id']);
-
-        try {
-            $id = D("Menu")->updateMenuById($menuId, $data);
-            if ($id === false) {
+    public function save() {
+        $menu = D('Menu');
+        if ($menu->create($_POST)) {
+            if ($menu->save()) {
+                return show(1, "更新成功！");
+            } else {
                 return show(0, "更新失败！");
             }
-            return show(1, "更新成功！");
-        } catch (Exception $e) {
-            return show(0, $e->getMessage());
+        } else {
+            return show(0, $menu->getError());
         }
     }
 
     public function setStatus() {
-        $data = array(
-            'id' => intval(I('id')),
-            'status' => intval(I('status')),
-        );
-        return parent::setStatus($data, "Menu");
+        $news = D('Menu');
+        $res = $news->updateStatusById(I('id'), I('status'));
+        if ($res) {
+            return show(1, "操作成功！");
+        } else {
+            return show(0, "操作失败！");
+        }
     }
 
     public function listorder() {

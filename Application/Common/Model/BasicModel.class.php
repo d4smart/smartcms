@@ -14,7 +14,7 @@ use Think\Model;
 class BasicModel extends Model
 {
     public function __construct() {
-
+        // 重写父类的construct方法
     }
 
     public function save($data = array()) {
