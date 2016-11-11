@@ -26,20 +26,8 @@ class PositionModel extends Model
         $this->position = M("position");
     }
 
-    public function select($conditions = array()) {
-        return $this->position->where($conditions)->order('id')->select();
-}
-
-    public function find($id) {
-        return $this->position->find($id);
-    }
-
-    public function updateById($id, $data) {
-        return $this->position->where('id='.$id)->save($data);
-    }
-
     public function updateStatusById($id, $status) {
-        return $this->position->where('id='.$id)->setField('status', $status);
+        return $this->position->where(array('id' => $id))->setField('status', $status);
     }
 
     /**

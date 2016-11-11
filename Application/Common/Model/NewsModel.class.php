@@ -74,15 +74,15 @@ class NewsModel extends Model
 
     public function updateById($id, $data) {
         $data['update_time'] = time();
-        return $this->news->where('news_id='.$id)->save($data);
+        return $this->news->where(array('news_id' => $id))->save($data);
     }
 
     public function updateStatusById($id, $status) {
-        return $this->news->where('news_id='.$id)->setField('status', $status);
+        return $this->news->where(array('news_id' => $id))->setField('status', $status);
     }
 
     public function updateListOrderById($id, $listorder) {
-        return $this->news->where('news_id='.$id)->setField('listorder', $listorder);
+        return $this->news->where(array('news_id' => $id))->setField('listorder', $listorder);
     }
 
     public function getNewsByNewsIdIn($newsIds = array()) {
@@ -99,7 +99,7 @@ class NewsModel extends Model
     }
 
     public function updateCount($id, $count) {
-        return $this->news->where('news_id='.$id)->setField('count', $count);
+        return $this->news->where(array('news_id' => $id))->setField('count', $count);
     }
 
     public function maxCount() {

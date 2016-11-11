@@ -38,19 +38,11 @@ class PositionContentModel extends Model
         return $list;
     }
 
-    public function insert($data=array()) {
-        return $this->position_content->add($data);
-    }
-
-    public function updateById($id, $data) {
-        return $this->position_content->where('id='.$id)->save($data);
-    }
-
     public function updateStatusById($id, $status) {
-        return $this->position_content->where('id='.$id)->setField('status', $status);
+        return $this->position_content->where(array('id' => $id))->setField('status', $status);
     }
 
     public function updateListorderById($id, $listorder) {
-        return $this->position_content->where('id='.$id)->setField('listorder', $listorder);
+        return $this->position_content->where(array('id' => $id))->setField('listorder', $listorder);
     }
 }

@@ -24,10 +24,11 @@ class LoginController extends Controller
             $admin = D('Admin');
             if ($admin->create($_POST)) {
                 if ($admin->login()) {
-                    D("Admin")->updateByAdminId($ret['admin_id'], array(
+                    $data = array(
                         'lastlogintime' => time(),
                         'lastloginip' => $_SERVER['REMOTE_ADDR'],
-                    ));
+                    );
+                    D('Admin')->where('admin_id='.$ret['admin_id'])->setField($data);
                     session('adminUser', $ret);
                     return show(1, '登陆成功！');
                 } else {

@@ -33,15 +33,6 @@ class AdminModel extends Model
         return $this->admin->where(array('username'=>$username))->find();
     }
 
-    public function updateByAdminId($id, $data) {
-        $data['admin_id'] = $id;
-        return $this->admin->save($data);
-    }
-
-    public function insert($data = array()) {
-        return $this->admin->add($data);
-    }
-
     public function getAdmins() {
         $data = array(
             'status' => array('neq',-1),
@@ -77,16 +68,11 @@ class AdminModel extends Model
      */
     public function login() {
         $password = $this->password; //传递的密码
-        $info = $this->where(array('username'=>$this->username))->find(); //数据库中存储的密码（md5）
+        $info = $this->admin->where(array('username'=>$this->username))->find(); //数据库中存储的密码（md5）
 
-        // 是否存在用户
-        if ($info) {
-            // 密码输入是否正确
-            if ($info['password'] == getMd5Password($password)) {
-                return true;
-            } else {
-                return false;
-            }
+        // 是否存在用户并且密码输入是否正确
+        if ($info && $info['password'] == getMd5Password($password)) {
+            return true;
         } else {
             return false;
         }

@@ -23,8 +23,7 @@ class PositionController extends CommonController
     public function add() {
         if ($_POST) {
             if (I('id')) {
-                $this->save();
-                return;
+                return $this->save();
             }
 
             $position = D('Position');

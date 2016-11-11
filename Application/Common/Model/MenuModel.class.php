@@ -29,10 +29,6 @@ class MenuModel extends Model
         $this->menu = M('menu');
     }
 
-    public function insert($data = array()) {
-        return $this->menu->add($data);
-    }
-
     public function getMenus($data, $page, $pageSize=10) {
         $data['status'] = array('neq', -1);
         $offset = ($page - 1) * $pageSize;
@@ -45,20 +41,12 @@ class MenuModel extends Model
         return $this->menu->where($data)->count();
     }
 
-    public function find($id) {
-        return $this->menu->find($id);
-    }
-
-    public function updateMenuById($id, $data) {
-        return $this->menu->where('menu_id='.$id)->save($data);
-    }
-
     public function updateStatusById($id, $status) {
-        return $this->menu->where('menu_id='.$id)->setField('status', $status);
+        return $this->menu->where(array('menu_id' => $id))->setField('status', $status);
     }
 
     public function updateListorderById($id, $listorder) {
-        return $this->menu->where('menu_id='.$id)->setField('listorder', $listorder);
+        return $this->menu->where(array('menu_id' => $id))->setField('listorder', $listorder);
     }
 
     public function getAdminMenus() {
