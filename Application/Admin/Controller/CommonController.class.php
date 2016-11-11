@@ -11,10 +11,24 @@ class CommonController extends Controller
 {
 	public function __construct() {
 		parent::__construct();
-		$this->_init();
+		$this->init();
+
+        $data['config'] = D("Basic")->select(); //网站配置
+        $data['navs'] = D("Menu")->getAdminMenus(); //后台菜单
+        $data['index'] = "index"; //后台菜单首页控制器名
+
+        // 非用户d4smart后台不显示用户管理菜单栏（注销掉获取到的相关值）
+        $username = getLoginUsername();
+        foreach($data['navs'] as $k=>$v) {
+            if ($v['c'] == 'admin' && $username != 'd4smart') {
+                unset($data['navs'][$k]);
+            }
+        }
+
+        $this->assign($data);
 	}
 
-	private function _init() {
+	private function init() {
 		// 如果已经登录
 		$isLogin = $this->isLogin();
 		if(!$isLogin) {
