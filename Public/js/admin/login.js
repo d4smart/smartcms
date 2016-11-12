@@ -13,6 +13,10 @@ var login = {
             dialog.error('用户名不能为空！');
             return;
         }
+        if (!verify) {
+            dialog.error('验证码不能为空！');
+            return;
+        }
 
         // 执行异步请求（$.post）
         var url = "/admin.php?c=login&a=check";

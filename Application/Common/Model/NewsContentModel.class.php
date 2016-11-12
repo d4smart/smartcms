@@ -13,7 +13,10 @@ use Think\Model;
 
 class NewsContentModel extends Model
 {
-    private $_db = '';
+    protected $_auto = array(
+        array('create_time', 'time', 1, 'function'),
+        array('update_time', 'time', 3, 'function'),
+    );
 
     protected $_validate = array(
         array('content', 'require', '文章内容不得为空！', 1, 'regex', 1),

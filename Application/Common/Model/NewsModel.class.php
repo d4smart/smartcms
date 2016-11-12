@@ -15,6 +15,14 @@ class NewsModel extends Model
 {
     private $news = '';
 
+    protected $_auto = array(
+        array('create_time', 'time', 1, 'function'),
+        array('update_time', 'time', 3, 'function'),
+        array('username', 'getLoginUsername', 1, 'function'),
+        array('listorder', '0'),  // 新增的时候把listorder字段设置为1
+        array('status', '1'),  // 新增的时候把status字段设置为1
+    );
+
     protected $_validate = array(
         array('title', 'require', '标题不得为空！', 1, 'regex', 3),
         array('small_title', 'require', '短标题不得为空！', 1, 'regex', 3),
@@ -27,13 +35,6 @@ class NewsModel extends Model
     public function __construct() {
         parent::__construct();
         $this->news = M('news');
-    }
-
-    public function insert($data=array()) {
-        $data['username'] = getLoginUsername();
-        $data['create_time'] = time();
-        $data['update_time'] = time();
-        return $this->news->add($data);
     }
 
     public function select($data = array(), $limit = 0) {

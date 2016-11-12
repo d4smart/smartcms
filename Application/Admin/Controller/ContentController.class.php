@@ -51,17 +51,12 @@ class ContentController extends CommonController
 
             $news = D('News');
             $newsContent = D('NewsContent');
-            $_POST['username'] = getLoginUsername();
-            $_POST['create_time'] = time();
-            $_POST['update_time'] = time();
 
             if ($news->create($_POST)) {
                 $news_id = $news->add();
                 if ($news_id) {
                     $news_content['news_id'] = $news_id;
                     $news_content['content'] = htmlspecialchars($_POST['content']);
-                    $news_content['create_time'] = time();
-                    $news_content['update_time'] = time();
 
                     if ($newsContent->create($news_content)) {
                         if ($newsContent->add()) {
@@ -117,13 +112,10 @@ class ContentController extends CommonController
         $news = D('News');
         $newsContent = D('NewsContent');
         $newsId = $_POST['news_id'];
-        $_POST['username'] = getLoginUsername();
-        $_POST['update_time'] = time();
 
         if ($news->create($_POST)) {
             if ($news->save()) {
                 $news_content['content'] = htmlspecialchars($_POST['content']);
-                $news_content['update_time'] = time();
 
                 if ($newsContent->create($news_content)) {
                     if ($newsContent->where(array('news_id'=>$newsId))->save()) {
@@ -182,7 +174,6 @@ class ContentController extends CommonController
                     'thumb' =>$new['thumb'],
                     'news_id' => $new['news_id'],
                     'status' => 1,
-                    'create_time' => $new['create_time'],
                 );
                 $position_content->add($data);
             }

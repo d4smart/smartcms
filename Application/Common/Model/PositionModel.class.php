@@ -15,6 +15,11 @@ class PositionModel extends Model
 {
     private $position = '';
 
+    protected $_auto = array(
+        array('create_time', 'time', 1, 'function'),
+        array('update_time', 'time', 3, 'function'),
+    );
+
     protected $_validate = array(
         array('name', 'require', '推荐位标题不得为空！', 1, 'regex', 3),
         array('description', 'require', '推荐位描述不得为空！', 1, 'regex', 3),

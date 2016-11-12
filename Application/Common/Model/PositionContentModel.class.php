@@ -15,6 +15,12 @@ class PositionContentModel extends Model
 {
     private $position_content = '';
 
+    protected $_auto = array(
+        array('create_time', 'time', 1, 'function'),
+        array('update_time', 'time', 3, 'function'),
+        array('listorder', '0'),  // 新增的时候把listorder字段设置为1
+    );
+
     protected $_validate = array(
         array('title', 'require', '推荐位标题不得为空！', 1, 'regex', 3),
         array('position_id', 'require', '推荐位位置不得为空！', 1, 'regex', 3),

@@ -19,7 +19,6 @@ class AdminController extends CommonController
         if(IS_POST) {
             // 保存数据
             $admin = D('Admin');
-            $_POST['password'] = getMd5Password($_POST['password']);
 
             if ($admin->create($_POST)) {
                 if ($admin->add()) {

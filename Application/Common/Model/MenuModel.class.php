@@ -15,6 +15,10 @@ class MenuModel extends Model
 {
     private $menu = '';
 
+    protected $_auto = array(
+        array('listorder', '0'),
+    );
+
     protected $_validate = array(
         array('name', 'require', '菜单名不得为空！', 1, 'regex', 3),
         array('m', 'require', '模块名不得为空！', 1, 'regex', 3),

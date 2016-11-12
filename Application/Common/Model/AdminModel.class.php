@@ -15,12 +15,18 @@ class AdminModel extends Model
 {
     private $admin = '';
 
+    protected $_auto = array(
+        array('password', 'getMd5Password', 3, 'function'), // password字段在新增和编辑的时候s使用md5加密处理
+        array('join_time', 'time', 1, 'function'), // join_time字段在新增的时候写入当前时间戳
+        array('status', '1'),  // 新增的时候把status字段设置为1
+    );
+
     protected $_validate = array(
         array('username', 'require', '用户名称不得为空！', 1, 'regex', 1),
         array('password', 'require', '密码不得为空！', 1, 'regex', 1),
         array('email', 'email', '邮箱填写错误！', 0, 'regex', 3),
         array('username', '', '用户名称已存在！', 0, 'unique', 3),
-        array('repassword', 'password', '密码不一致！', 1,'confirm', 1), // 验证确认密码是否和密码一致
+        array('repassword', 'password', '密码不一致！', 0,'confirm', 1), // 验证确认密码是否和密码一致
         array('verify', 'check_verify', '验证码不正确！', 0, 'callback', 3),
     );
 
@@ -67,8 +73,8 @@ class AdminModel extends Model
      * @return bool 登陆成功：true|登录失败：false
      */
     public function login() {
-        $password = $this->password; //传递的密码
-        $info = $this->admin->where(array('username'=>$this->username))->find(); //数据库中存储的密码（md5）
+        $password = I('password'); //传递的密码
+        $info = $this->admin->where(array('username'=>I('username')))->find(); //数据库中存储的密码（md5）
 
         // 是否存在用户并且密码输入是否正确
         if ($info && $info['password'] == getMd5Password($password)) {

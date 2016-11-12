@@ -50,9 +50,6 @@ class PositioncontentController extends CommonController
                 }
             }
 
-            $_POST['create_time'] = time();
-            $_POST['update_time'] = time();
-
             $positionContent = D('PositionContent');
             if ($positionContent->create($_POST)) {
                 if ($positionContent->add()) {
@@ -83,7 +80,6 @@ class PositioncontentController extends CommonController
 
     public function save() {
         $positionContent = D('PositionContent');
-        $_POST['update_time'] = time();
 
         // 继续使用文章的缩略图
         if ($_POST['news_id']) {

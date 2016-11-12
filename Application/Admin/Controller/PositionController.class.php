@@ -27,8 +27,6 @@ class PositionController extends CommonController
             }
 
             $position = D('Position');
-            $_POST['create_time'] = time();
-            $_POST['update_time'] = time();
 
             if ($position->create($_POST)) {
                 if ($position->add()) {
@@ -55,7 +53,7 @@ class PositionController extends CommonController
 
     public function save() {
         $position = D('Position');
-        $_POST['update_time'] = time();
+
         if ($position->create($_POST)) {
             if ($position->save()) {
                 return show(1, "更新成功！");

@@ -22,20 +22,16 @@ class LoginController extends Controller
 
         if ($ret && $ret['status'] != -1) {
             $admin = D('Admin');
-            if ($admin->create($_POST)) {
-                if ($admin->login()) {
-                    $data = array(
-                        'lastlogintime' => time(),
-                        'lastloginip' => $_SERVER['REMOTE_ADDR'],
-                    );
-                    D('Admin')->where('admin_id='.$ret['admin_id'])->setField($data);
-                    session('adminUser', $ret);
-                    return show(1, '登陆成功！');
-                } else {
-                    return show(0, '您的用户名或密码错误！');
-                }
+            if ($admin->login()) {
+                $data = array(
+                    'lastlogintime' => time(),
+                    'lastloginip' => $_SERVER['REMOTE_ADDR'],
+                );
+                D('Admin')->where('admin_id='.$ret['admin_id'])->setField($data);
+                session('adminUser', $ret);
+                return show(1, '登陆成功！');
             } else {
-                return show(0, $admin->getError());
+                return show(0, '您的用户名或密码错误！');
             }
         } else {
             return show(0, '该用户不存在或已被锁定！');
