@@ -55,8 +55,8 @@
                 <div class="col-lg-10">
                     <h3></h3>
                     <div class="table-responsive">
-                        <form id="singcms-listorder">
-                            <table class="table table-bordered table-hover singcms-table">
+                        <form id="smartcms-listorder">
+                            <table class="table table-bordered table-hover smartcms-table">
                                 <thead>
                                 <tr>
                                     <th width="14">排序</th><!--7-->
@@ -86,14 +86,14 @@
                                             </if>
                                         </td>
                                         <td>
-                                            <span attr-status="<if condition=" $content['status'] eq 1">0<else/>1</if>" attr-id="{$content.id}" class="sing_cursor singcms-on-off" id="singcms-on-off">
+                                            <span attr-status="<if condition=" $content['status'] eq 1">0<else/>1</if>" attr-id="{$content.id}" class="sing_cursor smartcms-on-off" id="smartcms-on-off">
                                                 {$content.status|status}
                                             </span>
                                         </td>
                                         <td>
                                             <span class="sing_cursor glyphicon glyphicon-edit" aria-hidden="true"
-                                                  id="singcms-edit" attr-id="{$content.id}"></span>
-                                            <a href="javascript:void(0)" id="singcms-delete" attr-id="{$content.id}"
+                                                  id="smartcms-edit" attr-id="{$content.id}"></span>
+                                            <a href="javascript:void(0)" id="smartcms-delete" attr-id="{$content.id}"
                                                attr-message="删除">
                                                 <span class="glyphicon glyphicon-remove-circle"
                                                       aria-hidden="true"></span>

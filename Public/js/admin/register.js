@@ -1,16 +1,17 @@
 /**
- * 前端登陆业务类
+ * 前端注册JS代码
  * Created by d4smart on 2016/10/25.
  */
 var register = {
     check: function () {
+        // 获取表单数据
         var data = $("#register-data").serializeArray();
         postData = {};
-        $(data).each(function (i) {
+        $(data).each(function () {
             postData[this.name] = this.value;
         });
 
-        // 获取登陆页面中的用户名和密码
+        // 前端验证
         var username = $('input[name="username"]').val();
         var email = $('input[name="email"]').val();
         if (!username) {
@@ -22,9 +23,9 @@ var register = {
             return;
         }
 
-        // 执行异步请求（$.post）
         var url = "/admin.php?c=register&a=register";
-        $.post(url, data, function(result) {
+        // 执行异步请求（$.post）
+        $.post(url, postData, function(result) {
             if (result.status == 0) {
                 return dialog.error(result.message);
             }
@@ -33,4 +34,4 @@ var register = {
             }
         }, 'JSON');
     }
-}
+};

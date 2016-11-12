@@ -33,7 +33,7 @@
                 <div class="col-lg-10">
                     <h3></h3>
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover singcms-table">
+                        <table class="table table-bordered table-hover smartcms-table">
                             <thead>
                             <tr>
                                 <th>id</th>
@@ -54,14 +54,14 @@
                                     <td><em>{$position.create_time|date="Y-m-d H:i",###}</em></td>
                                     <td><em>{$position.update_time|date="Y-m-d H:i",###}</em></td>
                                     <td>
-                                        <span attr-status="<if condition=" $position['status'] eq 1">0<else/>1</if>" attr-id="{$position.id}" class="sing_cursor singcms-on-off" id="singcms-on-off" >
+                                        <span attr-status="<if condition=" $position['status'] eq 1">0<else/>1</if>" attr-id="{$position.id}" class="sing_cursor smartcms-on-off" id="smartcms-on-off" >
                                             {$position.status|status}
                                         </span>
                                     </td>
                                     <td>
                                         <span class="sing_cursor glyphicon glyphicon-edit" aria-hidden="true"
-                                              id="singcms-edit" attr-id="{$position.id}"></span>
-                                        <a href="javascript:void(0)" id="singcms-delete" attr-id="{$position.id}"
+                                              id="smartcms-edit" attr-id="{$position.id}"></span>
+                                        <a href="javascript:void(0)" id="smartcms-delete" attr-id="{$position.id}"
                                            attr-message="删除">
                                             <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
                                         </a>
@@ -88,7 +88,7 @@
         'set_status_url': '/admin.php?c=position&a=setStatus',
         'add_url': '/admin.php?c=position&a=add',
     };
-    $(".singcms-table #sing-add-position-content").on('click', function () {
+    $(".smartcms-table #sing-add-position-content").on('click', function () {
         var id = $(this).attr('attr-id');
         window.location.href = '/admin.php?c=positioncontent&a=index&position_id=' + id;
     });

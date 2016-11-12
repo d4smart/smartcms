@@ -60,11 +60,11 @@
                 <div class="col-lg-12">
                     <h3></h3>
                     <div class="table-responsive">
-                        <form id="singcms-listorder">
-                            <table class="table table-bordered table-hover singcms-table">
+                        <form id="smartcms-listorder">
+                            <table class="table table-bordered table-hover smartcms-table">
                                 <thead>
                                 <tr>
-                                    <th id="singcms-checkbox-all" width="10"><input type="checkbox"></th>
+                                    <th id="smartcms-checkbox-all" width="10"><input type="checkbox"></th>
                                     <th width="6">排序</th>
                                     <th>id</th>
                                     <th>标题</th>
@@ -101,13 +101,13 @@
                                         <td>{$new.create_time|date="Y-m-d H:i",###}</td>
                                         <td>{$new.update_time|date="Y-m-d H:i",###}</td>
                                         <td>
-                                            <span attr-status="<if condition=" $new['status'] eq 1">0<else/>1</if>" attr-id="{$new.news_id}" class="sing_cursor singcms-on-off" id="singcms-on-off">
+                                            <span attr-status="<if condition=" $new['status'] eq 1">0<else/>1</if>" attr-id="{$new.news_id}" class="sing_cursor smartcms-on-off" id="smartcms-on-off">
                                                 {$new.status|status}
                                             </span></td>
                                         <td>
                                             <span class="sing_cursor glyphicon glyphicon-edit" aria-hidden="true"
-                                                  id="singcms-edit" attr-id="{$new.news_id}"></span>
-                                            <a href="javascript:void(0)" id="singcms-delete" attr-id="{$new.news_id}"
+                                                  id="smartcms-edit" attr-id="{$new.news_id}"></span>
+                                            <a href="javascript:void(0)" id="smartcms-delete" attr-id="{$new.news_id}"
                                                attr-message="删除">
                                                 <span class="glyphicon glyphicon-remove-circle"
                                                       aria-hidden="true"></span>
@@ -139,7 +139,7 @@
                                 </foreach>
                             </select>
                             <br /><br />
-                            <button id="singcms-push" type="button" class="btn btn-primary">推送</button>
+                            <button id="smartcms-push" type="button" class="btn btn-primary">推送</button>
                         </div>
 
                     </div>

@@ -1,5 +1,5 @@
 /**
- * 图片上传功能
+ * 图片上传JS代码
  */
 $(function() {
     $('#file_upload').uploadify({
@@ -13,11 +13,10 @@ $(function() {
         'onUploadSuccess' : function(file,data,response) {
             // response true ,false
             if(response) {
-                var obj = JSON.parse(data); //由JSON字符串转换为JSON对象
+                var obj = JSON.parse(data); // 由JSON字符串转换为JSON对象
 
-                // console.log(data);
+                // 更新html元素
                 $('#' + file.id).find('.data').html(' 上传完毕');
-
                 $("#upload_org_code_img").attr("src",obj.data);
                 $("#file_upload_image").attr('value',obj.data);
                 $("#upload_org_code_img").show();

@@ -27,10 +27,7 @@ class RegisterController extends Controller
             $admin = D('Admin');
             // 注册模式数据验证
             if ($admin->create($_POST)) {
-                // 对密码md5加密
-                $_POST['password'] = getMd5Password(I('password'));
-
-                if ($admin->add($_POST)) {
+                if ($admin->add()) {
                     return show(1, "注册成功！");
                 } else {
                     return show(0, "注册失败！");
@@ -41,23 +38,6 @@ class RegisterController extends Controller
         } else {
             return show(0, "没有提交数据！");
         }
-    }
-
-    public function check() {
-        $admin = D('admin');
-        // 注册模式数据验证
-        if ($admin->create($_POST)) {
-            // 对密码md5加密
-            $admin->password = getMd5Password(I('password'));
-            if ($admin->add()) {
-                $this->success('注册成功，跳转中...', U('Login/index'));
-            } else {
-                $this->error('注册失败！');
-            }
-        } else {
-            $this->error($admin->getError());
-        }
-        return;
     }
 
     /**

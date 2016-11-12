@@ -1,14 +1,15 @@
 /**
- * 前端登陆业务类
+ * 前端登陆JS代码
  * Created by d4smart on 2016/10/25.
  */
 var login = {
     check: function () {
-        // 获取登陆页面中的用户名和密码
+        // 获取登陆页面中的用户名，密码，验证码
         var username = $('input[name="username"]').val();
         var password = $('input[name="password"]').val();
         var verify = $('input[name="verify"]').val();
 
+        // 前端验证
         if (!username) {
             dialog.error('用户名不能为空！');
             return;
@@ -30,4 +31,4 @@ var login = {
             }
         }, 'JSON');
     }
-}
+};
