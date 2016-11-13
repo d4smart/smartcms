@@ -12,7 +12,13 @@ namespace Home\Controller;
 
 class DetailController extends CommonController
 {
+    /**
+     * 文章页面控制器
+     * 渲染并展示文章页面
+     * @param string $type 额外参数，指定浏览类型
+     */
     public function index($type='') {
+        // 合法性判断
         $id = intval(I('id'));
         if (!$id || $id <= 0) {
             $this->error("ID不合法！");
@@ -37,12 +43,17 @@ class DetailController extends CommonController
         $this->display("Detail/index");
     }
 
+    /**
+     * 后台浏览入口控制器
+     * 能够预览一些状态为关闭的文章
+     */
     public function view() {
+        // 权限判断
         if (!getLoginUsername()) {
             $this->error("您没有权限访问该页面！");
             return;
         }
 
-        $this->index('preview');
+        $this->index('preview'); // 调用index方法并传入额外参数
     }
 }

@@ -17,10 +17,19 @@ class BasicModel extends Model
         // 重写父类的construct方法，避免因为模型不对应数据库产生的bug
     }
 
+    /**
+     * 保存网站的配置信息（使用框架提供的F()方法）
+     * @param array $data 网站配置信息
+     * @return bool 缓存是否成功
+     */
     public function save($data = array()) {
         return F('basic_web_config', $data);
     }
 
+    /**
+     * 获取缓存的网站配置信息
+     * @return array 网站配置信息
+     */
     public function select() {
         return F('basic_web_config');
     }

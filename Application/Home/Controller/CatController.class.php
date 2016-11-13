@@ -12,8 +12,12 @@ namespace Home\Controller;
 
 class CatController extends CommonController
 {
+    /**
+     * 栏目页面控制器
+     * 根据传入的栏目id分页展示文章数据
+     */
     public function index() {
-        $id = intval(I('id'));
+        $id = I('id');
         if (!$id) {
             return $this->error('ID不存在！');
         }
