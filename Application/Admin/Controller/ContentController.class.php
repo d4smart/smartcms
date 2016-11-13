@@ -13,6 +13,10 @@ use Think\Exception;
 
 class ContentController extends CommonController
 {
+    /**
+     * 后台文章内容页面
+     * 根据可选的传入的查询条件和页码，分页显示文章数据
+     */
     public function index() {
         $conditions = array();
 
@@ -43,6 +47,10 @@ class ContentController extends CommonController
         $this->display();
     }
 
+    /**
+     * 文章添加
+     * 如果有提交的post数据，就添加文章数据并返回结果；否则显示文章添加页面
+     */
     public function add() {
         if ($_POST) {
             if (I('news_id')) {
@@ -86,11 +94,18 @@ class ContentController extends CommonController
         $this->display();
     }
 
+    /**
+     * 后台文章编辑页面
+     * 判断编辑请求的合法性，并显示文章编辑页面
+     */
     public function edit() {
+        // 是否传递了文章id值
         $newsId = intval(I('id'));
         if (!$newsId) {
             $this->redirect('/admin.php?c=content');
         }
+
+        // 数据库里是否能找到文章的信息和内容
         $news = D("News")->find($newsId);
         if (!$news) {
             $this->redirect('/admin.php?c=content');
@@ -108,6 +123,10 @@ class ContentController extends CommonController
         $this->display();
     }
 
+    /**
+     * 文章保存方法
+     * 保存提交的文章数据，并作出相应
+     */
     public function save() {
         $news = D('News');
         $newsContent = D('NewsContent');
@@ -134,6 +153,10 @@ class ContentController extends CommonController
         }
     }
 
+    /**
+     * 更改文章状态的方法
+     * 更改文章文章的状态，并返回结果
+     */
     public function setStatus() {
         $news = D('News');
         $res = $news->updateStatusById(I('id'), I('status'));
@@ -144,15 +167,24 @@ class ContentController extends CommonController
         }
     }
 
+    /**
+     * 文章排序方法
+     * 调用父类的公共方法
+     */
     public function listorder() {
         parent::listorder("News");
     }
 
+    /**
+     * 文章推送方法
+     * 获取文章推送的数据，在合法性检查后，将数据添加到推荐位内容中
+     */
     public function push() {
         $jumpUrl = $_SERVER['HTTP_REFERER'];
         $positionId = intval(I('position'));
         $newsId = I('push');
 
+        // 合法性检查
         if (!$newsId || !is_array($newsId)) {
             return show(0, "请选择文章进行推荐");
         }
@@ -167,6 +199,7 @@ class ContentController extends CommonController
                 return show(0, "没有相关内容");
             }
 
+            // 将数据添加到推荐位内容中
             foreach ($news as $new) {
                 $data = array(
                     'position_id' => $positionId,

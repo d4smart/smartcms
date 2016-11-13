@@ -7,7 +7,10 @@ namespace Admin\Controller;
 
 class IndexController extends CommonController
 {
-    
+    /**
+     * 后台首页控制器
+     * 显示后台首页的信息
+     */
     public function index(){
         $news = D("News")->maxCount();
         $newsCount = D('News')->getNewsCount(array('status'=>1));

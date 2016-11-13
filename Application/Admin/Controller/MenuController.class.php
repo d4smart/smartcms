@@ -9,10 +9,13 @@
  */
 
 namespace Admin\Controller;
-use Think\Exception;
 
 class MenuController extends CommonController
 {
+    /**
+     * 后台菜单首页
+     * 根据可选的查询条件，分页显示菜单的信息
+     */
     public function index() {
         $data = array();
 
@@ -23,9 +26,7 @@ class MenuController extends CommonController
             $this->assign('type', -1);
         }
 
-        /**
-         * 分页操作逻辑
-         */
+        // 分页操作逻辑
         $page = $_REQUEST['p']?$_REQUEST['p']:1;
         $pageSize = $_REQUEST['pageSize']?$_REQUEST['pageSize']:10;
         $menus = D('Menu')->getMenus($data, $page, $pageSize);
@@ -38,6 +39,10 @@ class MenuController extends CommonController
         $this->display();
     }
 
+    /**
+     * 菜单添加函数
+     * 保存post过来的菜单数据，并返回状态信息
+     */
     public function add() {
         if ($_POST) {
             if (I('menu_id')) {
@@ -59,6 +64,10 @@ class MenuController extends CommonController
         $this->display();
     }
 
+    /**
+     * 后台菜单编辑页面
+     * 根据传入的菜单id显示菜单编辑页面
+     */
     public function edit() {
         $menuId = I('id');
         $menu = D("Menu")->find($menuId);
@@ -67,6 +76,10 @@ class MenuController extends CommonController
         $this->display();
     }
 
+    /**
+     * 菜单保存（更新）函数
+     * 保存post过来的菜单数据，并返回状态信息
+     */
     public function save() {
         $menu = D('Menu');
         if ($menu->create($_POST)) {
@@ -80,6 +93,10 @@ class MenuController extends CommonController
         }
     }
 
+    /**
+     * 更改菜单状态的方法
+     * 更改菜单状态，并返回结果
+     */
     public function setStatus() {
         $news = D('Menu');
         $res = $news->updateStatusById(I('id'), I('status'));
@@ -90,6 +107,10 @@ class MenuController extends CommonController
         }
     }
 
+    /**
+     * 菜单排序排序方法
+     * 调用父类的公共排序方法
+     */
     public function listorder() {
         return parent::listorder("Menu");
     }

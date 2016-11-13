@@ -1,6 +1,6 @@
 <?php
 /**
- * Desp:
+ * Desp: 用户注册控制器
  * User: d4smart
  * Date: 2016/11/9
  * Time: 9:55
@@ -14,14 +14,17 @@ use Think\Controller;
 class RegisterController extends Controller
 {
     /**
-     * 用户注册方法
-     * 如果有post数据，判断用户输入合法性，添加用户并跳转；否则显示注册页面
+     * 用户注册页面
      */
     public function index() {
         // 显示注册页面
         $this->display();
     }
 
+    /**
+     * 用户注册方法
+     * 对传入的post数据进行合法性检查，并添加合法的数据，发挥状态信息
+     */
     public function register() {
         if ($_POST) {
             $admin = D('Admin');
@@ -42,6 +45,7 @@ class RegisterController extends Controller
 
     /**
      * 验证码生成函数
+     * 可以在页面中通过url触发
      */
     public function verify() {
         $verify = new \Think\Verify();

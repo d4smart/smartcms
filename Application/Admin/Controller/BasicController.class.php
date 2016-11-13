@@ -12,6 +12,10 @@ namespace Admin\Controller;
 
 class BasicController extends CommonController
 {
+    /**
+     * 后台基本配置页面
+     * 显示网站的基本配置（可以修改并提交）
+     */
     public function index() {
         $result = D("Basic")->select();
         $this->assign('vo', $result);
@@ -19,6 +23,10 @@ class BasicController extends CommonController
         $this->display();
     }
 
+    /**
+     * 网站配置添加方法
+     * 保存对网站配置的修改并返回结果
+     */
     public function add() {
         if ($_POST) {
             if (!I('title')) {
@@ -38,7 +46,10 @@ class BasicController extends CommonController
         }
     }
 
-    // 缓存管理
+    /**
+     * 后台缓存配置页面
+     * 显示缓存配置页面（可以更新缓存）
+     */
     public function cache() {
         $this->assign('type', 2);
         $this->display();

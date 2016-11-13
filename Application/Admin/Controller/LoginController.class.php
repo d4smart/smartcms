@@ -7,7 +7,10 @@ use Think\Controller;
 
 class LoginController extends Controller
 {
-
+    /**
+     * 后台登陆页面
+     * 判断用户是否已经登陆，有就跳转到后台首页；否则显示登陆页面
+     */
     public function index() {
         if (session('adminUser')) {
             $this->redirect('/admin.php?c=index');
@@ -15,6 +18,10 @@ class LoginController extends Controller
     	$this->display();
     }
 
+    /**
+     * 用户登录函数
+     * 判断用户登录是否合法，合法就更新数据库里的相关信息，将用户信息写入session，并返回状态信息
+     */
     public function check() {
         $username = I('username');
         $ret = D('Admin')->getAdminByUsername($username);
@@ -40,6 +47,7 @@ class LoginController extends Controller
 
     /**
      * 验证码生成函数
+     * 可以在页面中通过url触发
      */
     public function verify() {
         $verify = new \Think\Verify();
@@ -49,6 +57,10 @@ class LoginController extends Controller
         $verify->entry();
     }
 
+    /**
+     * 用户登出函数
+     * 清空session信息，并跳转
+     */
     public function logout() {
         session('adminUser', null);
         $this->redirect('/admin.php?c=login');

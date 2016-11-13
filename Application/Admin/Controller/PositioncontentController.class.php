@@ -13,6 +13,10 @@ use Think\Exception;
 
 class PositioncontentController extends CommonController
 {
+    /**
+     * 推荐位内容首页
+     * 根据传入的查询条件显示推荐位内容信息
+     */
     public function index() {
         $positions = D("Position")->getNormalPositions();
         // 获取推荐位内容
@@ -30,8 +34,13 @@ class PositioncontentController extends CommonController
         $this->display();
     }
 
+    /**
+     * 推荐位内容添加方法
+     * 如果有post数据，就对推荐位内容数据进行合法性检查，并将推荐位内容添加到数据库；否则显示推荐位内容添加页面
+     */
     public function add() {
         if ($_POST) {
+            // 数据合法性检查
             if (!I('url') && !I('news_id')) {
                 return show(0, "url和news_id不能同时为空！");
             }
@@ -39,6 +48,7 @@ class PositioncontentController extends CommonController
                 return $this->save();
             }
 
+            // 缩略图的特殊处理
             if (!isset($_POST['thumb']) || !I('thumb')) {
                 if (I('news_id')) {
                     $res = D('News')->find(I('news_id'));
@@ -68,6 +78,10 @@ class PositioncontentController extends CommonController
         }
     }
 
+    /**
+     * 推荐位内容编辑页面
+     * 显示推荐位内容编辑页面
+     */
     public function edit() {
         $id = I('id');
         $position = D("PositionContent")->find($id);
@@ -78,6 +92,10 @@ class PositioncontentController extends CommonController
         $this->display();
     }
 
+    /**
+     * 推荐位内容保存函数
+     * 保存post过来的文章数据
+     */
     public function save() {
         $positionContent = D('PositionContent');
 
@@ -100,6 +118,10 @@ class PositioncontentController extends CommonController
         }
     }
 
+    /**
+     * 推荐位内容编辑页面状态设置方法
+     * 设置推荐位内容编辑页面的状态，并返回状态信息
+     */
     public function setStatus() {
         $news = D('PositionContent');
         $res = $news->updateStatusById(I('id'), I('status'));
@@ -110,6 +132,10 @@ class PositioncontentController extends CommonController
         }
     }
 
+    /**
+     * 推荐位内容编辑页面排序方法
+     * 调用父类的公共方法
+     */
     public function listorder() {
         return parent::listorder("PositionContent");
     }

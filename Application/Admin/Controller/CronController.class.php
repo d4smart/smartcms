@@ -12,6 +12,9 @@ namespace Admin\Controller;
 
 class CronController
 {
+    /**
+     * 数据库自动备份方法，可以设置crontab在后台定时触发
+     */
     public function dumpmysql() {
         $result = D("Basic")->select();
         if (!$result['dumpmysql']) {

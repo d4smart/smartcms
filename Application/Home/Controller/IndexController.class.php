@@ -9,7 +9,7 @@ use Think\Exception;
 class IndexController extends CommonController
 {
     /**
-     * 前台首页控制器
+     * 前台首页
      * 渲染首页，并根据参数展示或生成缓存
      * @param string $type 额外参数，指定操作类型
      */
@@ -37,7 +37,7 @@ class IndexController extends CommonController
     }
 
     /**
-     * 更新首页缓存控制器（通过url触发）
+     * 更新首页缓存（通过url触发）
      * 调用index方法，生成首页缓存并返回状态信息
      */
     public function build_html() {
@@ -46,7 +46,7 @@ class IndexController extends CommonController
     }
 
     /**
-     * 更新首页缓存控制器（通过crontab触发）
+     * 更新首页缓存（通过crontab触发）
      * 判断请求是否合法，合法则生成首页缓存
      */
     public function crontab_build_html() {
@@ -64,7 +64,7 @@ class IndexController extends CommonController
     }
 
     /**
-     * 文章阅读数控制器
+     * 获取文章阅读数
      * 根据传入的文章id返回文章的阅读数信息
      */
     public function getCount() {

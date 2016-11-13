@@ -13,6 +13,9 @@ use Think\Exception;
 
 class PositionController extends CommonController
 {
+    /**
+     * 后台推荐位首页
+     */
     public function index() {
         $positions = D("Position")->getNormalPositions();
 
@@ -20,6 +23,10 @@ class PositionController extends CommonController
         $this->display();
     }
 
+    /**
+     * 推荐位添加
+     * 如果有post数据，就添加推荐位数据，并返回状态信息；否则显示推荐位添加页面
+     */
     public function add() {
         if ($_POST) {
             if (I('id')) {
@@ -43,6 +50,9 @@ class PositionController extends CommonController
         }
     }
 
+    /**
+     * 推荐位编辑页面
+     */
     public function edit() {
         $id = I('id');
         $vo = D("Position")->find(intval($id));
@@ -51,6 +61,10 @@ class PositionController extends CommonController
         $this->display();
     }
 
+    /**
+     * 推荐位保存函数
+     * 保存post过来的推荐位信息
+     */
     public function save() {
         $position = D('Position');
 
@@ -65,6 +79,10 @@ class PositionController extends CommonController
         }
     }
 
+    /**
+     * 推荐位状态设置函数
+     * 设置推荐位的状态，并返回状态信息
+     */
     public function setStatus() {
         $position = D('Position');
         $res = $position->updateStatusById(I('id'), I('status'));

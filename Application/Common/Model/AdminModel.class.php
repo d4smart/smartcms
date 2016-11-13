@@ -84,7 +84,7 @@ class AdminModel extends Model
     }
 
     /**
-     * 用户登陆函数
+     * 用户登陆合法性检查函数
      * 根据传递的username和password判断用户登录是否合法
      * @return bool 登陆成功：true|登录失败：false
      */

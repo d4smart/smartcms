@@ -12,6 +12,10 @@ namespace Admin\Controller;
 
 class ImageController extends CommonController
 {
+    /**
+     * 图片异步上传方法
+     * 上传图片，返回图片的存储路径或失败信息
+     */
     public function ajaxuploadimage() {
         $upload = D("UploadImage");
         $res = $upload->imageUpload();
@@ -23,6 +27,10 @@ class ImageController extends CommonController
         }
     }
 
+    /**
+     * 文件异步上传方法
+     * 上传文件，返回文件的存储路径或失败信息
+     */
     public function kindupload() {
         $upload = D("UploadImage");
         $res = $upload->upload();

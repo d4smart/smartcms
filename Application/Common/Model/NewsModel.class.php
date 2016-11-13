@@ -42,7 +42,7 @@ class NewsModel extends Model
 
     /**
      * 根据查询条件，页码和页大小获取文章信息
-     * @param array $conditions 查询条件
+     * @param array $conditions 查询条件（模糊查询）
      * @param int $page 页码
      * @param int $pageSize 页大小
      * @return array 文章信息
