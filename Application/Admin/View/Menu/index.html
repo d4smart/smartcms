@@ -18,7 +18,7 @@
 
                     <ol class="breadcrumb">
                         <li>
-                            <i class="fa fa-dashboard"></i> <a href="/admin.php?c=menu">菜单管理</a>
+                            <i class="fa fa-dashboard"></i> <a href="/index.php?m=admin&c=menu">菜单管理</a>
                         </li>
                         <li class="active">
                             <i class="fa fa-table"></i>菜单列表
@@ -28,7 +28,7 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                <form action="/admin.php" method="get">
+                <form action="/index.php?m=admin&c=menu" method="post">
                     <div class="input-group col-md-6">
                         <span class="input-group-addon">类型</span>
                         <select class="form-control" name="type">
@@ -40,8 +40,6 @@
                             <button id="sub_data" type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
                         </span>
                     </div>
-                    <input type="hidden" name="c" value="menu"/>
-                    <input type="hidden" name="a" value="index"/>
                 </form>
             </div>
             <br>
@@ -117,10 +115,10 @@
 
 <script>
     var SCOPE = {
-        'add_url': '/admin.php?c=menu&a=add',
-        'edit_url': '/admin.php?c=menu&a=edit',
-        'set_status_url': '/admin.php?c=menu&a=setStatus',
-        'listorder_url': '/admin.php?c=menu&a=listorder',
+        'add_url': '/index.php?m=admin&c=menu&a=add',
+        'edit_url': '/index.php?m=admin&c=menu&a=edit',
+        'set_status_url': '/index.php?m=admin&c=menu&a=setStatus',
+        'listorder_url': '/index.php?m=admin&c=menu&a=listorder',
 
     }
 </script>

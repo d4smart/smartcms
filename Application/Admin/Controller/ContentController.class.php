@@ -102,13 +102,13 @@ class ContentController extends CommonController
         // 是否传递了文章id值
         $newsId = intval(I('id'));
         if (!$newsId) {
-            $this->redirect('/admin.php?c=content');
+            $this->redirect('/index.php?m=admin&c=content');
         }
 
         // 数据库里是否能找到文章的信息和内容
         $news = D("News")->find($newsId);
         if (!$news) {
-            $this->redirect('/admin.php?c=content');
+            $this->redirect('/index.php?m=admin&c=content');
         }
         $newsContent = D("NewsContent")->find($newsId);
         if ($newsContent) {

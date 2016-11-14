@@ -23,14 +23,14 @@ var register = {
             return;
         }
 
-        var url = "/admin.php?c=register&a=register";
+        var url = "/index.php?m=admin&c=register&a=register";
         // 执行异步请求（$.post）
         $.post(url, postData, function(result) {
             if (result.status == 0) {
                 return dialog.error(result.message);
             }
             if (result.status == 1) {
-                return dialog.success(result.message, '/admin.php?c=login')
+                return dialog.success(result.message, 'index.php?m=admin&c=login')
             }
         }, 'JSON');
     }

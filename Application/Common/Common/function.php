@@ -62,9 +62,9 @@ function status($status) {
  * @return string url地址
  */
 function getAdminMenuUrl($nav) {
-    $url = '/admin.php?c='.$nav['c'].'&a='.$nav['f'];
+    $url = '/index.php?m=admin&c='.$nav['c'].'&a='.$nav['f'];
     if ($nav['f'] == 'index') {
-        $url = '/admin.php?c='.$nav['c'];
+        $url = '/index.php?m=admin&c='.$nav['c'];
     }
     return $url;
 }

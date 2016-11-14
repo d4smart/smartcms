@@ -16,7 +16,7 @@
 
                     <ol class="breadcrumb">
                         <li>
-                            <i class="fa fa-dashboard"></i> <a href="/admin.php?c=positioncontent">推荐位内容管理</a>
+                            <i class="fa fa-dashboard"></i> <a href="/index.php?m=admin&c=positioncontent">推荐位内容管理</a>
                         </li>
                         <li class="active">
                             <i class="fa fa-edit"></i> 修改推荐位内容
@@ -103,9 +103,9 @@
 
 <script>
     var SCOPE = {
-        'save_url': '/admin.php?c=positioncontent&a=save',
-        'jump_url': '/admin.php?c=positioncontent&a=index',
-        'ajax_upload_image_url': '/admin.php?c=image&a=ajaxuploadimage',
+        'save_url': '/index.php?m=admin&c=positioncontent&a=save',
+        'jump_url': '/index.php?m=admin&c=positioncontent&a=index',
+        'ajax_upload_image_url': '/index.php?m=admin&c=image&a=ajaxuploadimage',
         'ajax_upload_swf': '/Public/js/party/uploadify.swf'
     };
     var thumb = "{$vo.thumb}";

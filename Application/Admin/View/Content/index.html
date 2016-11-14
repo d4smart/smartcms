@@ -16,7 +16,7 @@
 
                     <ol class="breadcrumb">
                         <li>
-                            <i class="fa fa-dashboard"></i> <a href="/admin.php?c=content">文章管理</a>
+                            <i class="fa fa-dashboard"></i> <a href="/index.php?m=admin&c=content">文章管理</a>
                         </li>
                         <li class="active">
                             <i class="fa fa-table"></i>文章列表
@@ -33,7 +33,7 @@
             </div><br>
 
             <div class="row">
-                <form action="/admin.php?c=content&a=index" method="post">
+                <form action="/index.php?m=admin&c=content&a=index" method="post">
                     <div class="col-md-3">
                         <div class="input-group">
                             <span class="input-group-addon">栏目</span>
@@ -158,12 +158,12 @@
 
 <script>
     var SCOPE = {
-        'edit_url': '/admin.php?c=content&a=edit',
-        'add_url': '/admin.php?c=content&a=add',
-        'set_status_url': '/admin.php?c=content&a=setStatus',
+        'edit_url': '/index.php?m=admin&c=content&a=edit',
+        'add_url': '/index.php?m=admin&c=content&a=add',
+        'set_status_url': '/index.php?m=admin&c=content&a=setStatus',
         'sing_news_view_url': '/index.php?c=view',
-        'listorder_url': '/admin.php?c=content&a=listorder',
-        'push_url': '/admin.php?c=content&a=push',
+        'listorder_url': '/index.php?m=admin&c=content&a=listorder',
+        'push_url': '/index.php?m=admin&c=content&a=push',
     }
 </script>
 <include file="Public/footer"/>

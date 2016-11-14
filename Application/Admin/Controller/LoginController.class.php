@@ -13,7 +13,7 @@ class LoginController extends Controller
      */
     public function index() {
         if (session('adminUser')) {
-            $this->redirect('/admin.php?c=index');
+            $this->redirect('/index.php?m=admin&c=index');
         }
     	$this->display();
     }
@@ -63,7 +63,7 @@ class LoginController extends Controller
      */
     public function logout() {
         session('adminUser', null);
-        $this->redirect('/admin.php?c=login');
+        $this->redirect('/index.php?m=admin&c=login');
     }
 
 }

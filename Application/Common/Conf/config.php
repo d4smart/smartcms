@@ -4,8 +4,10 @@ return array(
 
     // URL地址不区分大小写
     'URL_CASE_INSENSITIVE' => true,
+    // 开启路由
+    'URL_ROUTER_ON'   => true,
     // URL模式
-    'URL_MODEL' => 0,
+    'URL_MODEL' => 2,
     // 额外加载的配置文件
     'LOAD_EXT_CONFIG' => 'db_config',
 

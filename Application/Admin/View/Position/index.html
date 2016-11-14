@@ -16,14 +16,14 @@
 
                     <ol class="breadcrumb">
                         <li>
-                            <i class="fa fa-dashboard"></i> <a href="/admin.php?c=position">推荐位管理</a>
+                            <i class="fa fa-dashboard"></i> <a href="/index.php?m=admin&c=position">推荐位管理</a>
                         </li>
                     </ol>
                 </div>
             </div>
             <!-- /.row -->
             <div>
-                <button url="/admin.php?c=position&a=add" id="button-add" type="button"
+                <button url="/index.php?m=admin&c=position&a=add" id="button-add" type="button"
                         class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加
                 </button>
@@ -84,13 +84,13 @@
 
 <script>
     var SCOPE = {
-        'edit_url': '/admin.php?c=position&a=edit',
-        'set_status_url': '/admin.php?c=position&a=setStatus',
-        'add_url': '/admin.php?c=position&a=add',
+        'edit_url': '/index.php?m=admin&c=position&a=edit',
+        'set_status_url': '/index.php?m=admin&c=position&a=setStatus',
+        'add_url': '/index.php?m=admin&c=position&a=add',
     };
     $(".smartcms-table #sing-add-position-content").on('click', function () {
         var id = $(this).attr('attr-id');
-        window.location.href = '/admin.php?c=positioncontent&a=index&position_id=' + id;
+        window.location.href = '/index.php?m=admin&c=positioncontent&a=index&position_id=' + id;
     });
 </script>
 <include file="Public/footer"/>

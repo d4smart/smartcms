@@ -17,7 +17,7 @@
 
                     <ol class="breadcrumb">
                         <li>
-                            <i class="fa fa-dashboard"></i> <a href="/admin.php?c=content">文章管理</a>
+                            <i class="fa fa-dashboard"></i> <a href="/index.php?m=admin&c=content">文章管理</a>
                         </li>
                         <li class="active">
                             <i class="fa fa-edit"></i> 文章添加
@@ -130,9 +130,9 @@
 
 <script>
     var SCOPE = {
-        'save_url': '/admin.php?c=content&a=add',
-        'jump_url': '/admin.php?c=content',
-        'ajax_upload_image_url': '/admin.php?c=image&a=ajaxuploadimage',
+        'save_url': '/index.php?m=admin&c=content&a=add',
+        'jump_url': '/index.php?m=admin&c=content',
+        'ajax_upload_image_url': '/index.php?m=admin&c=image&a=ajaxuploadimage',
         'ajax_upload_swf': '/Public/js/party/uploadify.swf',
     };
 </script>
@@ -140,7 +140,7 @@
 <script>
     KindEditor.ready(function (K) {
         window.editor = K.create('#editor_smartcms', {
-            uploadJson: '/admin.php?c=image&a=kindupload',
+            uploadJson: '/index.php?m=admin&c=image&a=kindupload',
             afterBlur: function () {
                 this.sync();
             },
