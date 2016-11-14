@@ -106,15 +106,12 @@ function getLoginUsername() {
 
 /**
  * 根据文章的catid获取所属的栏目名
- * @param array $navs 栏目信息（所有栏目）
  * @param int $id 文章所属栏目id
  * @return string 栏目名
  */
-function getCateName($navs, $id) {
-    foreach ($navs as $nav) {
-        $navList[$nav['menu_id']] = $nav['name'];
-    }
-    return isset($navList[$id]) ? $navList[$id] : '';
+function getCateName($id) {
+    $menu = D('Menu')->find($id);
+    return isset($menu['name']) ? $menu['name'] : '';
 }
 
 /**
