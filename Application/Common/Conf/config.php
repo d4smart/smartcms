@@ -4,10 +4,15 @@ return array(
 
     // URL地址不区分大小写
     'URL_CASE_INSENSITIVE' => true,
-    // 开启路由
-    'URL_ROUTER_ON'   => true,
+
     // URL模式
     'URL_MODEL' => 2,
+
+    // 允许访问的模块列表
+    'MODULE_ALLOW_LIST' => array('Home','Admin'),
+
+    'DEFAULT_MODULE' => 'Home', // 默认模块
+
     // 额外加载的配置文件
     'LOAD_EXT_CONFIG' => 'db_config',
 

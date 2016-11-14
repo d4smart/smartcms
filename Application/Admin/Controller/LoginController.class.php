@@ -13,7 +13,7 @@ class LoginController extends Controller
      */
     public function index() {
         if (session('adminUser')) {
-            $this->redirect('/index.php?m=admin&c=index');
+            $this->redirect('/admin/index');
         }
     	$this->display();
     }
@@ -29,16 +29,20 @@ class LoginController extends Controller
 
         if ($ret && $ret['status'] != -1) {
             $admin = D('Admin');
-            if ($admin->login()) {
-                $data = array(
-                    'lastlogintime' => time(),
-                    'lastloginip' => $_SERVER['REMOTE_ADDR'],
-                );
-                D('Admin')->where('admin_id='.$ret['admin_id'])->setField($data);
-                session('adminUser', $ret);
-                return show(1, '登陆成功！');
+            if ($admin->create($_POST)) {
+                if ($admin->login()) {
+                    $data = array(
+                        'lastlogintime' => time(),
+                        'lastloginip' => $_SERVER['REMOTE_ADDR'],
+                    );
+                    D('Admin')->where('admin_id='.$ret['admin_id'])->setField($data);
+                    session('adminUser', $ret);
+                    return show(1, '登陆成功！');
+                } else {
+                    return show(0, '您的用户名或密码错误！');
+                }
             } else {
-                return show(0, '您的用户名或密码错误！');
+                return show(0, $admin->getError());
             }
         } else {
             return show(0, '该用户不存在或已被锁定！');
@@ -63,7 +67,7 @@ class LoginController extends Controller
      */
     public function logout() {
         session('adminUser', null);
-        $this->redirect('/index.php?m=admin&c=login');
+        $this->redirect('/admin/login');
     }
 
 }

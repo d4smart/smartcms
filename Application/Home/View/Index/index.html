@@ -24,7 +24,7 @@
                            news-id="{$result['topPicNews'][0]['news_id']}"
                            id="node-{$result['topPicNews'][0]['news_id']}"></i>
                     </div>
-                    <a href="/index.php?c=detail&id={$result['topPicNews'][0]['news_id']}" target="_blank">
+                    <a href="/news/{$result['topPicNews'][0]['news_id']}" target="_blank">
                         <img width="670" height="360" src="{$result['topPicNews'][0]['thumb']}" alt="">
                     </a>
                 </div>
@@ -33,7 +33,7 @@
 
                         <volist name="result['topSmallNews']" id="vo">
                             <li>
-                                <a href="/index.php?c=detail&id={$vo.news_id}" target="_blank">
+                                <a href="/news/{$vo.news_id}" target="_blank">
                                     <img src="{$vo.thumb}" width="150" height="113" alt="{$vo.title}">
                                 </a>
                             </li>
@@ -45,10 +45,10 @@
                 <volist name="result['listNews']" id="vo">
                     <dl>
                         <dt>
-                            <a href="/index.php?c=detail&id={$vo.news_id}" target="_blank">{$vo.title}</a>
+                            <a href="/news/{$vo.news_id}" target="_blank">{$vo.title}</a>
                         </dt>
                         <dd class="news-img">
-                            <a href="/index.php?c=detail&id={$vo.news_id}" target="_blank">
+                            <a href="/news/{$vo.news_id}" target="_blank">
                                 <img src="{$vo.thumb}" width="200" height="120" alt="{$vo.title}">
                             </a>
                         </dd>

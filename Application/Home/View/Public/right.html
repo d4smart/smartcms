@@ -10,7 +10,7 @@
             <ul>
                 <volist name="rankNews" id="vo" key="k">
                     <li class="num{$k} curr">
-                        <a href="/index.php?c=detail&id={$vo.news_id}" target="_blank">{$vo.title}</a>
+                        <a href="/news/{$vo.news_id}" target="_blank">{$vo.title}</a>
                         <if condition="$k eq 1">
                             <div class="intro">
                                 {$vo.description}

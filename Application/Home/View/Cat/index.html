@@ -18,9 +18,9 @@
             <div class="news-list">
                 <volist name="result['listNews']" id="vo">
                     <dl>
-                        <dt><a href="/index.php?c=detail&id={$vo.news_id}" target="_blank">{$vo.title}</a></dt>
+                        <dt><a href="/news/{$vo.news_id}" target="_blank">{$vo.title}</a></dt>
                         <dd class="news-img">
-                            <a href="/index.php?c=detail&id={$vo.news_id}"><img width="200" height="120"
+                            <a href="/news/{$vo.news_id}"><img width="200" height="120"
                                                                                 src="{$vo.thumb}" alt="{$vo.title}"></a>
                         </dd>
                         <dd class="news-intro">
