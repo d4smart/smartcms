@@ -21,7 +21,7 @@ class CronController
             die("系统没有设置自动备份数据库");
         }
 
-        $shell = 'mysqldump -u'.C("DB_USER")." ".C("DB_NAME")."> /root/backup".date("Ymd").'.sql';
+        $shell = 'mysqldump -u'.C("DB_USER").' -p'.C("DB_PWD")." ".C("DB_NAME")." > /root/backup/smartcms".date("Ymd").'.sql';
         exec($shell);
     }
 }

@@ -20,7 +20,7 @@ return array(
     'MD5_SUF' => '小舟从此逝，江海寄余生',
 
     // 是否显示页面Trace信息
-    'SHOW_PAGE_TRACE' => true,
+    // 'SHOW_PAGE_TRACE' => true,
 
     // html静态文件后缀
     'HTML_FILE_SUFFIX' => '.html',

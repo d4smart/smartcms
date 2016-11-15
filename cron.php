@@ -5,16 +5,22 @@
 if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
 
 // 开启调试模式 建议开发阶段开启 部署阶段注释或者设为false
-define('APP_DEBUG',True);
+// define('APP_DEBUG',True);
+
+// 缓存路径，页面静态化文件存储的位置
+define('HTML_PATH', './');
 
 // 执行方法检测
 define('APP_CRONTAB', 1);
 
 // 参数检测
 if (!$argv || count($argv) < 4) {
-    die("parmas is error.");
+    die("Params error.");
 }
-$dir = dirname(__FILE__);
+
+// 切换工作目录为当前文件所在目录
+$path = dirname(__FILE__);
+chdir($path);
 
 // 根据传入的命令行参数设置模块，控制器，方法
 $_GET['m'] = !isset($_GET['m']) ? $argv[1] : 'admin';
