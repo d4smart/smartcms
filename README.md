@@ -15,7 +15,7 @@
 
 ## 使用方法
 1. 将代码clone到web根目录下
-3. 导入目录下的blog.sql到数据库中
+3. 导入目录下的smartcms.sql到数据库中
 4. 在Application/Common/Conf下新建db_config.php文件，填入数据库连接信息，连接刚才导入的数据库
 5. 如果服务器不支持pathinfo和rewrite模式则需要进行配置
 

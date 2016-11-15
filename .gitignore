@@ -2,3 +2,4 @@
 Runtime
 .phpstorm.meta.php
 db_config.php
+.DS_Store
